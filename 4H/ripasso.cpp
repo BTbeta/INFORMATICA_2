@@ -8,6 +8,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<limits.h>
 //dichiarazione dei costanti
 #define R 3
 #define C 3
@@ -21,22 +22,36 @@ void visualizzaMAT(int[][C]);//vissualizza i numeri nella matrice
 void visualizzaMAT_orinzontale(int[][C],int);//vissualizza una delle righe
 void visualizzaMAT_verticale(int[][C],int);//vissualizza una delle collone
 void visualizzaMAT_diagonale(int[][C]);//vissualizza i numeri che stanno diagonalmente nella matrice
+void ordinaVET(int[]);
+void ordinaMAT(int[][C]);
+
+int cercaMassimoVET(int[]);//cerca il più grande in un vettore
+int cercaMinimoVET(int[]);//cerca il più piccolo in un vettore
+int cercaMassimoVET_MAT(int[],int);//cerca il più grande in un vettore per il matrice
+int cercaMinimoVET_MAT(int[],int);//cerca il più piccolo in un vettore per il matrice
+int cercaMassimoMAT(int[][C]);//cerca il più grande in un matrice
+int cercaMinimoMAT(int[][C]);//cerca il più piccolo in un matrice
 int main()
 {
 	int v[R],m[R][C],a;
 	srand(time(NULL));
+	//test funzione caricaVET_rand e visualizzaVET
 	caricaVET_rand(v);
 	visualizzaVET(v);
 	printf("\n");
+	//test funzione caricaMAT_rand e visualizzaMAT
 	caricaMAT_rand(m);
 	visualizzaMAT(m);
 	printf("\n");
+	//test funzione caricaVET_manuale
 	caricaVET_manuale(v);
 	visualizzaVET(v);
 	printf("\n");
+	//test funzione caricaMAT_manuale
 	caricaMAT_manuale(m);
 	visualizzaMAT(m);
 	printf("\n");
+	//test funzione visualizzaMAT_orinzontale, visualizzaMAT_verticale e visualizzaMAT_diagonale
 	do
 	{
 		printf("inserisci un numero tra 0 a 2\n");
@@ -48,6 +63,26 @@ int main()
 	printf("\n");
 	visualizzaMAT_diagonale(m);
 	printf("\n");
+	//test funzione ordinaVET
+	ordinaVET(v);
+	visualizzaVET(v);
+	printf("\n");
+	//test funzione ordinaMAT
+	ordinaMAT(m);
+	visualizzaMAT(m);
+	printf("\n");
+	//test funzione cercaMassimoVET
+	a=cercaMassimoVET(v);
+	printf("%d\n",a);
+	//test funzione cercaMinimoVET
+	a=cercaMinimoVET(v);
+	printf("%d\n",a);
+	//test funzione cercaMassimoVET_MAT e cercaMassimoMAT
+	a=cercaMassimoMAT(m);
+	printf("%d\n",a);
+	//test funzione cercaMinimoVET_MAT e cercaMinimoMAT
+	a=cercaMinimoMAT(m);
+	printf("%d\n",a);
 }
 void caricaVET_rand(int x[])
 {
@@ -124,4 +159,110 @@ void visualizzaMAT_diagonale(int x[][C])
 		printf("%d\t",x[i][i]);
 	}
 	printf("\n");
+}
+void ordinaVET(int x[])
+{
+	int i=0,s,a;
+	do
+	{
+		s=0;
+		for(i=0;i<R-1;i++)
+		{
+			if(x[i]>x[i+1])
+			{
+				a=x[i];
+				x[i]=x[i+1];
+				x[i+1]=a;
+				s=1;
+			}
+		}
+	}while(s==1);
+}
+void ordinaMAT(int x[][C])
+{
+	int i,j,y=0,vet[R*C];
+	for(i=0;i<R;i++)
+	{
+		for(j=0;j<C;j++)
+		{
+			vet[y]=x[i][j];
+			y++;
+		}
+	}
+	ordinaVET(vet);
+	y=0;
+	for(i=0;i<R;i++)
+	{
+		for(j=0;j<C;j++)
+		{
+			x[i][j]=vet[y];
+			y++;
+		}
+	}
+}
+int cercaMassimoVET(int x[])//cM
+{
+	int i,a=INT_MIN;
+	for(i=0;i<R;i++)
+	{
+		if(a<x[i])
+		{
+			a=x[i];
+		}
+	}
+	return a;
+}
+int cercaMinimoVET(int x[])
+{
+	int i,a=INT_MAX;
+	for(i=0;i<R;i++)
+	{
+		if(a>x[i])
+		{
+			a=x[i];
+		}
+	}
+	return a;
+}
+int cercaMassimoVET_MAT(int x[],int y)
+{
+	int i;
+	for(i=0;i<R;i++)
+	{
+		if(y<x[i])
+		{
+			y=x[i];
+		}
+	}
+	return y;
+}
+int cercaMinimoVET_MAT(int x[],int y)
+{
+	int i;
+	for(i=0;i<R;i++)
+	{
+		if(y>x[i])
+		{
+			y=x[i];
+		}
+	}
+	return y;
+}
+int cercaMassimoMAT(int x[][C])
+{
+	int i,a=INT_MIN;
+	for(i=0;i<R;i++)
+	{
+		a=cercaMassimoVET_MAT(x[i],a);
+	}
+	return a;
+}
+int cercaMinimoMAT(int x[][C])
+{
+	int i,a=INT_MAX;
+	for(i=0;i<R;i++)
+	{
+		a=cercaMinimoVET_MAT(x[i],a);
+	}
+	return a;
 }
