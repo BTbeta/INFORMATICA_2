@@ -35,19 +35,20 @@ int cercaMassimoVET_MAT(int[],int);//cerca il più grande in un vettore per il m
 int cercaMinimoVET_MAT(int[],int);//cerca il più piccolo in un vettore per il matrice
 int cercaMassimoMAT(int[][C]);//cerca il più grande in un matrice
 int cercaMinimoMAT(int[][C]);//cerca il più piccolo in un matrice
+void ordinaMAT_VET(int[],int);
 int main()
 {
 	int v[R],m[R][C],a,b,c;
 	srand(time(NULL));
-	//test funzione caricaVET_rand e visualizzaVET
+	/*//test funzione caricaVET_rand e visualizzaVET
 	caricaVET_rand(v);
 	visualizzaVET(v);
 	printf("\n");
-	//test funzione caricaMAT_rand e visualizzaMAT
+	//test funzione caricaMAT_rand e visualizzaMAT*/
 	caricaMAT_rand(m);
 	visualizzaMAT(m);
 	printf("\n");
-	//test funzione caricaVET_manuale
+	/*//test funzione caricaVET_manuale
 	caricaVET_manuale(v);
 	visualizzaVET(v);
 	printf("\n");
@@ -114,7 +115,7 @@ int main()
 	if(c==C)
 	printf("non c'e'\n");
 	else
-	printf("e' nella cella %d\n",c);
+	printf("e' nella cella %d\n",c);*/
 }
 void caricaVET_rand(int x[])
 {
@@ -221,8 +222,8 @@ void ordinaMAT(int x[][C])
 			y++;
 		}
 	}
-	ordinaVET(vet);
-	y=0;
+	ordinaMAT_VET(vet,R*C)
+    y=0;
 	for(i=0;i<R;i++)
 	{
 		for(j=0;j<C;j++)
@@ -351,4 +352,22 @@ int cercaMinimoMAT(int x[][C])
 		a=cercaMinimoVET_MAT(x[i],a);
 	}
 	return a;
+}
+void ordinaMAT_VET(int x[],int y)
+{
+	int i,s,a;
+	do
+	{
+		s=0;
+		for(i=0;i<y-1;i++)
+		{
+			if(x[i]>x[i+1])
+			{
+				a=x[i];
+				x[i]=x[i+1];
+				x[i+1]=a;
+				s=1;
+			}
+		}
+	}while(s==1);
 }
