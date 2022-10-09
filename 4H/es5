@@ -5,18 +5,19 @@
  *esercizio in classe :record         *
  **************************************/
 #include<stdio.h>
-#define N 10
+#define L 10
 #define V 5
+#define N 5
 struct s_data
 {
 	int gg;
-	char mm[N];
+	char mm[L];
 	int aaaa;
 }typedef s_data;
 struct student
 {
 	int matricola;
-	char cognome[N];
+	char cognome[L];
 	s_data nascita;
 	int voti[V];
 	int media;
@@ -25,14 +26,14 @@ void inserimento(student[]);
 void media_studente(student[]);
 int main()
 {
-	student st1[V],st2[V];
+	student st1[N],st2[N];
 	inserimento(st1);
 	media_studente(st1);
 }
 void inserimento(student st[])
 {
 	int i,j,t=0,m;
-	for(j=0;j<V;j++)
+	for(j=0;j<N;j++)
 	{
 		printf("inserisci informazioni studente %d\n",j+1);
 		printf("matricola\n");
@@ -61,7 +62,7 @@ void inserimento(student st[])
 void media_studente(student st[])
 {
 	int j;
-	for(j=0;j<V;j++)
+	for(j=0;j<N;j++)
 	{
 		printf("informazioni studente %d\n",j+1);
 		printf("cognome\n");
