@@ -1,0 +1,133 @@
+/**************************************
+ *zeng oscar                          *
+ *4H                                  *
+ *10/10/2022                          *
+ *esercizio in classe :record         *
+ **************************************/
+//inclusione di librerie
+#include<stdio.h>					//untilizato per input e output
+#include<stdlib.h>					//untilizato per srand
+#include<time.h>					//untilizato per rand
+#include<limits.h>					//untilizato per INT_MIN
+//inclusione dei costanti
+#define N 3							//numero di studebti	
+#define V 5							//quanti voti
+#define L 10						//lunghezza delle parole
+//dichiarazione struct
+struct data
+{
+	int gg;
+	char mm[L];
+	int aaaa;
+}typedef data;
+struct student
+{
+	int matricola;					//numero in classifica
+	char cognome[L];
+	data nascita;
+	int voti[V];
+	int media;
+}typedef student;
+//dichiarazione funzioni
+void InsrimentoRandVoti(student[]);
+void visualizza(student[]);
+int TrovaVotoAlto(student[]);
+void M_cog(student[]);
+//programma principale
+int main()
+{
+	int a;							//a utilizzato per prendere il valore in funzione TrovaVotoAlto
+	student st[N];
+	srand(time(NULL));
+	InsrimentoRandVoti(st);
+	M_cog(st);
+	visualizza(st);
+	a=TrovaVotoAlto(st);
+	printf("%s\n",st[a].cognome);
+}
+void InsrimentoRandVoti(student st[])
+{
+	int i,j;
+	for(j=0;j<N;j++)
+	{
+		printf("inserisci informazioni studente %d\n",j+1);
+		printf("matricola\n");
+		scanf("%d",&st[j].matricola);
+		printf("cognome\n");
+		scanf("%s",st[j].cognome);
+		printf("data di nascita\n");
+		printf("giorno\n");
+		scanf("%d",&st[j].nascita.gg);
+		printf("nome mese\n");
+		scanf("%s",st[j].nascita.mm);
+		printf("anno\n");
+		scanf("%d",&st[j].nascita.aaaa);
+		for(i=0;i<V;i++)
+		{
+			st[j].voti[i]=rand()%10+1;
+		}
+	}
+}
+void visualizza(student st[])
+{
+	int i,j;
+	for(j=0;j<N;j++)
+	{
+		printf("informazioni studente %d\n",j+1);
+		printf("matricola\n");
+		printf("%d\n",st[j].matricola);
+		printf("cognome\n");
+		printf("%s\n",st[j].cognome);
+		printf("data di nascita\n");
+		printf("giorno\n");
+		printf("%d\n",st[j].nascita.gg);
+		printf("mese\n");
+		printf("%s\n",st[j].nascita.mm);
+		printf("anno\n");
+		printf("%d\n",st[j].nascita.aaaa);
+		printf("voti\n");
+		for(i=0;i<V;i++)
+		{
+			printf("%d\n",st[j].voti[i]);
+		}
+	}
+}
+int TrovaVotoAlto(student st[])
+{
+	int i,j,v[N+1],r;
+	for(j=0;j<N+1;j++)
+	{
+		v[j]=INT_MIN;
+	}
+	for(j=0;j<N;j++)
+	{
+		for(i=0;i<V-1;i++)
+		{
+			if(v[j]<st[j].voti[i])
+			v[j]=st[j].voti[i];
+		}
+	}
+	for(i=0;i<N-1;i++)
+	{
+		if(v[N]<v[i])
+		v[N]=v[i];
+		r=i;
+	}
+	return r;
+}
+void M_cog(student st[])
+{
+	int i,j;
+	for(j=0;j<N;j++)
+	{
+		if(st[j].cognome[i]>='a'&&st[j].cognome[i]<='z')
+		st[j].cognome[i]-=32;
+		i++;
+		do
+		{
+			if(st[j].cognome[i]>='A'&&st[j].cognome[i]<='Z')
+			st[j].cognome[i]+=32;
+			i++;
+		}while(st[j].cognome[i]!='\0');
+	}
+}
