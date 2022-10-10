@@ -34,18 +34,30 @@ void visualizza(student[]);
 void media_studente(student []);
 int TrovaVotoAlto(student[]);
 void M_cog(student[]);
+int RicercaMatricola(student[]);
+int RicercaCognome(student[]);
 //programma principale
 int main()
 {
-	int a;							//a utilizzato per prendere il valore in funzione TrovaVotoAlto
+	int a;							//a utilizzato per prendere i valori dai funzioni
 	student st[N];
 	srand(time(NULL));
 	InsrimentoRandVoti(st);
-	M_cog(st);
+	/*M_cog(st);
 	visualizza(st);
 	media_studente(st);
 	a=TrovaVotoAlto(st);
 	printf("%s\n",st[a].cognome);
+	system("pause");
+	system("cls");
+	a=RicercaMatricola(st);
+	printf("%d\n",a);
+	system("pause");
+	system("cls");*/
+	a=RicercaCognome(st);
+	printf("%d\n",a);
+	system("pause");
+	system("cls");
 }
 void InsrimentoRandVoti(student st[])
 {
@@ -161,4 +173,48 @@ void M_cog(student st[])
 			i++;
 		}while(st[j].cognome[i]!='\0');
 	}
+}
+int RicercaMatricola(student st[])
+{
+	int j,a;
+	printf("insrisci la numero matricola\n");
+	scanf("%d",&a);
+	system("cls");
+	for(j=0;j<N;j++)
+	{
+		if(st[j].matricola==a)
+		{
+			return j;
+		}
+	}
+	return -1;
+}
+int RicercaCognome(student st[])
+{
+	int i=0;
+	char a[L];
+	printf("insrisci il cognome\n");
+	scanf("%s",a);
+	system("cls");
+	if(a[i]>='a'&&a[i]<='z')
+	{
+		a[i]-=32;
+	}
+	i++;
+	do
+	{
+		if(a[i]>='A'&&a[i]<='Z')
+		{
+			a[i]+=32;
+		}
+		i++;
+	}while(a[i]!='\0');
+	for(i=0;i<N;i++)
+	{
+		if(st[i].cognome==a)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
