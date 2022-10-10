@@ -6,7 +6,7 @@
  **************************************/
 //inclusione di librerie
 #include<stdio.h>					//untilizato per input e output
-#include<stdlib.h>					//untilizato per srand
+#include<stdlib.h>					//untilizato per srand e system
 #include<time.h>					//untilizato per rand
 #include<limits.h>					//untilizato per INT_MIN
 //inclusione dei costanti
@@ -31,6 +31,7 @@ struct student
 //dichiarazione funzioni
 void InsrimentoRandVoti(student[]);
 void visualizza(student[]);
+void media_studente(student []);
 int TrovaVotoAlto(student[]);
 void M_cog(student[]);
 //programma principale
@@ -42,12 +43,13 @@ int main()
 	InsrimentoRandVoti(st);
 	M_cog(st);
 	visualizza(st);
+	media_studente(st);
 	a=TrovaVotoAlto(st);
 	printf("%s\n",st[a].cognome);
 }
 void InsrimentoRandVoti(student st[])
 {
-	int i,j;
+	int i,j,t=0,m;
 	for(j=0;j<N;j++)
 	{
 		printf("inserisci informazioni studente %d\n",j+1);
@@ -65,7 +67,13 @@ void InsrimentoRandVoti(student st[])
 		for(i=0;i<V;i++)
 		{
 			st[j].voti[i]=rand()%10+1;
+			t+=st[j].voti[i];
 		}
+		m=t/V;
+		st[j].media=m;
+		t=0;
+		m=0;
+		system("cls");
 	}
 }
 void visualizza(student st[])
@@ -88,9 +96,27 @@ void visualizza(student st[])
 		printf("voti\n");
 		for(i=0;i<V;i++)
 		{
-			printf("%d\n",st[j].voti[i]);
+			printf("%d\t",st[j].voti[i]);
 		}
+		printf("\nmedia\n");
+		printf("%d\n",st[j].media);
 	}
+	system("pause");
+	system("cls");
+}
+void media_studente(student st[])
+{
+	int j;
+	for(j=0;j<N;j++)
+	{
+		printf("informazioni studente %d\n",j+1);
+		printf("cognome\n");
+		printf("%s\n",st[j].cognome);
+		printf("media\n");
+		printf("%d\n",st[j].media);
+	}
+	system("pause");
+	system("cls");
 }
 int TrovaVotoAlto(student st[])
 {
@@ -120,13 +146,18 @@ void M_cog(student st[])
 	int i,j;
 	for(j=0;j<N;j++)
 	{
+		i=0;
 		if(st[j].cognome[i]>='a'&&st[j].cognome[i]<='z')
-		st[j].cognome[i]-=32;
+		{
+			st[j].cognome[i]-=32;
+		}
 		i++;
 		do
 		{
 			if(st[j].cognome[i]>='A'&&st[j].cognome[i]<='Z')
-			st[j].cognome[i]+=32;
+			{
+				st[j].cognome[i]+=32;
+			}
 			i++;
 		}while(st[j].cognome[i]!='\0');
 	}
