@@ -5,10 +5,11 @@
  *esercizio in classe :record         *
  **************************************/
 //inclusione di librerie
-#include<stdio.h>					//untilizato per input e output
-#include<stdlib.h>					//untilizato per srand e system
-#include<time.h>					//untilizato per rand
-#include<limits.h>					//untilizato per INT_MIN
+#include<stdio.h>					//utilizato per input e output
+#include<stdlib.h>					//utilizato per srand e system
+#include<time.h>					//utilizato per rand
+#include<limits.h>					//utilizato per INT_MIN nella funzione TrovaVotoAlto
+#include<strings.h>					//utilizato per strcmp e strcpy nella funzione Ordine_Cognome
 //inclusione dei costanti
 #define N 3							//numero di studebti	
 #define V 5							//quanti voti
@@ -36,6 +37,7 @@ int TrovaVotoAlto(student[]);
 void M_cog(student[]);
 int RicercaMatricola(student[]);
 int RicercaCognome(student[]);
+void Ordine_Cognome(student[]);
 //programma principale
 int main()
 {
@@ -43,7 +45,7 @@ int main()
 	student st[N];
 	srand(time(NULL));
 	InsrimentoRandVoti(st);
-	/*M_cog(st);
+	M_cog(st);
 	visualizza(st);
 	media_studente(st);
 	a=TrovaVotoAlto(st);
@@ -53,11 +55,13 @@ int main()
 	a=RicercaMatricola(st);
 	printf("%d\n",a);
 	system("pause");
-	system("cls");*/
+	system("cls");
 	a=RicercaCognome(st);
 	printf("%d\n",a);
 	system("pause");
 	system("cls");
+	Ordine_Cognome(st);
+	visualizza(st);
 }
 void InsrimentoRandVoti(student st[])
 {
@@ -211,10 +215,29 @@ int RicercaCognome(student st[])
 	}while(a[i]!='\0');
 	for(i=0;i<N;i++)
 	{
-		if(st[i].cognome==a)
+		if(strcmp(st[i].cognome,a)==0)
 		{
 			return i;
 		}
 	}
 	return -1;
+}
+void Ordine_Cognome(student st[])
+{
+	student st2;
+	int i,s;
+	do
+	{
+		s=0;
+		for(i=0;i<N-1;i++)
+		{
+			if(strcmp(st[i].cognome,st[i+1].cognome)==1)
+			{
+				st2=st[i];
+				st[i]=st[i+1];
+				st[i+1]=st2;
+				s=1;
+			}
+		}
+	}while(s==1);
 }
