@@ -7,8 +7,6 @@
 * 
 * @author <zeng oscar>
 * @date <17/10/2022> 
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
 */
 //inclusione di librerie
 #include<stdio.h>					//utilizato per input e output
@@ -37,13 +35,101 @@ struct student
 }typedef student;
 //dichiarazione funzioni
 void InsrimentoRandVoti(student[]);
+/** ****************************************************************************************
+* @brief <InsrimentoRandVoti inserimento numero matricola, cognome e data di nascita generando voti a caso da 1 a 10 e calcolando la media>
+* @param  <una arrey di struct student>
+* @retval <nessuna>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 void visualizza(student[]);
+/** ****************************************************************************************
+* @brief <vissualizza tutto il arrey di struct student>
+* @param  <una arrey di struct student>
+* @retval <nessuna>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 void media_studente(student []);
+/** ****************************************************************************************
+* @brief <vissualizza il cognome e la media di ogni arrey di struct student>
+* @param  <una arrey di struct student>
+* @retval <nessuna>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 int TrovaVotoAlto(student[]);
+/** ****************************************************************************************
+* @brief <trova il voto più alto tra arrey di struct student>
+* @param  <una arrey di struct student>
+* @retval <restituise un valore int che rapresenta la posizione della cella>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 void M_cog(student[]);
+/** ****************************************************************************************
+* @brief <converte la prima lettera in maiuscolo e il resto dopo minuscolo>
+* @param  <una arrey di struct student>
+* @retval <nessuna>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 int RicercaMatricola(student[]);
+/** ****************************************************************************************
+* @brief <inserire una breve descrizione della routine>
+* @param  <una arrey di struct student>
+* @retval <valori restituiti>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 int RicercaCognome(student[]);
+/** ****************************************************************************************
+* @brief <inserire una breve descrizione della routine>
+* @param  <una arrey di struct student>
+* @retval <valori restituiti>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 void Ordine_Cognome(student[]);
+/** ****************************************************************************************
+* @brief <inserire una breve descrizione della routine>
+* @param  <una arrey di struct student>
+* @retval <valori restituiti>
+* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+*
+* @author <autore>
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
+
 //programma principale
 int main()
 {
