@@ -1,9 +1,15 @@
-/**************************************
- *zeng oscar                          *
- *4H                                  *
- *10/10/2022                          *
- *esercizio in classe :record         *
- **************************************/
+/** ****************************************************************************************
+* \mainpage <es6>
+*
+* @brief <lavorando in struct facendo carica, stampa, ricerca, ordina>
+* <specifiche del progetto>
+* <specifiche del collaudo>
+* 
+* @author <zeng oscar>
+* @date <17/10/2022> 
+* @version 1.0 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <data> <Descrivere le modifiche apportate>
+*/
 //inclusione di librerie
 #include<stdio.h>					//utilizato per input e output
 #include<stdlib.h>					//utilizato per srand e system
