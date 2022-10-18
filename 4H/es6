@@ -135,7 +135,7 @@ int main()
 {
 	int a;							//a utilizzato per prendere i valori dai funzioni
 	student st[N];
-	srand(time(NULL));
+	srand(time(NULL));				//quata riga fa funzionare rand
 	InsrimentoRandVoti(st);
 	M_cog(st);
 	visualizza(st);
@@ -174,10 +174,10 @@ void InsrimentoRandVoti(student st[])
 		scanf("%d",&st[j].nascita.aaaa);
 		for(i=0;i<V;i++)
 		{
-			st[j].voti[i]=rand()%10+1;
-			t+=st[j].voti[i];
+			st[j].voti[i]=rand()%10+1;					//genera voti casuali
+			t+=st[j].voti[i];							//somma tutti i voti
 		}
-		m=t/V;
+		m=t/V;											//calcola la media
 		st[j].media=m;
 		t=0;
 		m=0;
@@ -228,31 +228,22 @@ void media_studente(student st[])
 }
 int TrovaVotoAlto(student st[])
 {
-	int i,j,v[N+1],r;
-	for(j=0;j<N+1;j++)
-	{
-		v[j]=INT_MIN;
-	}
-	for(j=0;j<N;j++)
+	int i,j,v=INT_MIN,r;
+	for(j=0;j<N;j++)										//qua cerca quale studente ha il voto più alto
 	{
 		for(i=0;i<V-1;i++)
 		{
-			if(v[j]<st[j].voti[i])
-			v[j]=st[j].voti[i];
+			if(v<st[j].voti[i])
+			v=st[j].voti[i];
+			r=j;
 		}
 	}
-	for(i=0;i<N-1;i++)
-	{
-		if(v[N]<v[i])
-		v[N]=v[i];
-		r=i;
-	}
-	return r;
+	return r;												//il risultato è sempre il primo studente con il voto più alto che incontra
 }
 void M_cog(student st[])
 {
 	int i,j;
-	for(j=0;j<N;j++)
+	for(j=0;j<N;j++)										//qua rende il prima lettera maiuscolo e il resto munuscolo
 	{
 		i=0;
 		if(st[j].cognome[i]>='a'&&st[j].cognome[i]<='z')
@@ -260,14 +251,14 @@ void M_cog(student st[])
 			st[j].cognome[i]-=32;
 		}
 		i++;
-		do
+		while(st[j].cognome[i]!='\0')
 		{
 			if(st[j].cognome[i]>='A'&&st[j].cognome[i]<='Z')
 			{
 				st[j].cognome[i]+=32;
 			}
 			i++;
-		}while(st[j].cognome[i]!='\0');
+		}
 	}
 }
 int RicercaMatricola(student st[])
@@ -276,7 +267,7 @@ int RicercaMatricola(student st[])
 	printf("insrisci la numero matricola\n");
 	scanf("%d",&a);
 	system("cls");
-	for(j=0;j<N;j++)
+	for(j=0;j<N;j++)										//qua cerca il numero della matricola
 	{
 		if(st[j].matricola==a)
 		{
@@ -292,20 +283,20 @@ int RicercaCognome(student st[])
 	printf("insrisci il cognome\n");
 	scanf("%s",a);
 	system("cls");
-	if(a[i]>='a'&&a[i]<='z')
+	if(a[i]>='a'&&a[i]<='z')								//qua rende il prima lettera maiuscolo e il resto munuscolo
 	{
 		a[i]-=32;
 	}
 	i++;
-	do
+	while(a[i]!='\0')
 	{
 		if(a[i]>='A'&&a[i]<='Z')
 		{
 			a[i]+=32;
 		}
 		i++;
-	}while(a[i]!='\0');
-	for(i=0;i<N;i++)
+	}
+	for(i=0;i<N;i++)										//in questo for cerca il cognome che stai cercando
 	{
 		if(strcmp(st[i].cognome,a)==0)
 		{
@@ -318,7 +309,7 @@ void Ordine_Cognome(student st[])
 {
 	student st2;
 	int i,s;
-	do
+	do														//in questo do e while ho utilizzato ordina con sentinella
 	{
 		s=0;
 		for(i=0;i<N-1;i++)
