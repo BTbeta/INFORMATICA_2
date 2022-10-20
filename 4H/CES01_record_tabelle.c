@@ -33,39 +33,37 @@ struct student
 	int voti[V];
 	int media;
 }typedef student;
+
 //dichiarazione funzioni
-void InsrimentoRandVoti(student[]);
+
 /** ****************************************************************************************
 * @brief <InsrimentoRandVoti inserimento numero matricola, cognome e data di nascita generando voti a caso da 1 a 10 e calcolando la media>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @see <inserimento normale e nel ciclo dei voti generando numeri casuali con rand>
 *
-* @author <autore>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
+* @author <zeng oscar>
 */
+void InsrimentoRandVoti(student[]);
 
-void visualizza(student[]);
 /** ****************************************************************************************
 * @brief <vissualizza tutto il arrey di struct student>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @see <carica normale>
 *
-* @author <autore>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
+* @author <zeng oscar>
 */
+void visualizza(student[]);
 
 void media_studente(student []);
 /** ****************************************************************************************
 * @brief <vissualizza il cognome e la media di ogni arrey di struct student>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @see <carica cognome e media>
 *
-* @author <autore>
+* @author <zeng oscar>
 * @version 1.0 <data> <Descrivere le modifiche apportate>
 * @version 1.1 <data> <Descrivere le modifiche apportate>
 */
@@ -75,9 +73,9 @@ int TrovaVotoAlto(student[]);
 * @brief <trova il voto piÃ¹ alto tra arrey di struct student>
 * @param  <una arrey di struct student>
 * @retval <restituise un valore int che rapresenta la posizione della cella>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @see <dopio ciclo for e un if e die variabili uno che tiene la posizione della cella nel struct e l'altro il voto più alto>
 *
-* @author <autore>
+* @author <zeng oscar>
 * @version 1.0 <data> <Descrivere le modifiche apportate>
 * @version 1.1 <data> <Descrivere le modifiche apportate>
 */
@@ -87,9 +85,9 @@ void M_cog(student[]);
 * @brief <converte la prima lettera in maiuscolo e il resto dopo minuscolo del cognome>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @see <un ciclo for per passare arrey di struct dentro il ciclo comincia controlare il primo e poi utilizando il while per chidere velocemente>
 *
-* @author <autore>
+* @author <zeng oscar>
 * @version 1.0 <data> <Descrivere le modifiche apportate>
 * @version 1.1 <data> <Descrivere le modifiche apportate>
 */
@@ -98,10 +96,10 @@ int RicercaMatricola(student[]);
 /** ****************************************************************************************
 * @brief <questa funzione cerca il numero della matricola con richiesta all'utente>
 * @param  <una arrey di struct student>
-* @retval <valori restituiti>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @retval <rida la posizione che ha chiesto l'utente>
+* @see <riciesta nella funzione un ciclo for per passare arrey di struct dentro il ciclo >
 *
-* @author <autore>
+* @author <zeng oscar>
 * @version 1.0 <data> <Descrivere le modifiche apportate>
 * @version 1.1 <data> <Descrivere le modifiche apportate>
 */
@@ -111,9 +109,9 @@ int RicercaCognome(student[]);
 * @brief <questa funzione cerca il cognome della matricola con richiesta all'utente>
 * @param  <una arrey di struct student>
 * @retval <valori restituiti>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @see <riciesta nella funzione>
 *
-* @author <autore>
+* @author <zeng oscar>
 * @version 1.0 <data> <Descrivere le modifiche apportate>
 * @version 1.1 <data> <Descrivere le modifiche apportate>
 */
@@ -122,10 +120,10 @@ void Ordine_Cognome(student[]);
 /** ****************************************************************************************
 * @brief <ordina arrey per matricola>
 * @param  <una arrey di struct student>
-* @retval <valori restituiti>
+* @retval <nessuno>
 * @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
 *
-* @author <autore>
+* @author <zeng oscar>
 * @version 1.0 <data> <Descrivere le modifiche apportate>
 * @version 1.1 <data> <Descrivere le modifiche apportate>
 */
