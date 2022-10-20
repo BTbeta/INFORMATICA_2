@@ -40,7 +40,7 @@ struct student
 * @brief <InsrimentoRandVoti inserimento numero matricola, cognome e data di nascita generando voti a caso da 1 a 10 e calcolando la media>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <inserimento normale e nel ciclo dei voti generando numeri casuali con rand>
+* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
 *
 * @author <zeng oscar>
 */
@@ -50,83 +50,66 @@ void InsrimentoRandVoti(student[]);
 * @brief <vissualizza tutto il arrey di struct student>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <carica normale>
 *
 * @author <zeng oscar>
 */
 void visualizza(student[]);
 
-void media_studente(student []);
 /** ****************************************************************************************
 * @brief <vissualizza il cognome e la media di ogni arrey di struct student>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <carica cognome e media>
 *
 * @author <zeng oscar>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
 */
+void media_studente(student []);
 
-int TrovaVotoAlto(student[]);
 /** ****************************************************************************************
 * @brief <trova il voto piÃ¹ alto tra arrey di struct student>
 * @param  <una arrey di struct student>
 * @retval <restituise un valore int che rapresenta la posizione della cella>
-* @see <dopio ciclo for e un if e die variabili uno che tiene la posizione della cella nel struct e l'altro il voto più alto>
 *
 * @author <zeng oscar>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
 */
+int TrovaVotoAlto(student[]);
 
-void M_cog(student[]);
 /** ****************************************************************************************
 * @brief <converte la prima lettera in maiuscolo e il resto dopo minuscolo del cognome>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
-* @see <un ciclo for per passare arrey di struct dentro il ciclo comincia controlare il primo e poi utilizando il while per chidere velocemente>
 *
 * @author <zeng oscar>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
 */
+void M_cog(student[]);
 
-int RicercaMatricola(student[]);
 /** ****************************************************************************************
 * @brief <questa funzione cerca il numero della matricola con richiesta all'utente>
 * @param  <una arrey di struct student>
 * @retval <rida la posizione che ha chiesto l'utente>
-* @see <riciesta nella funzione un ciclo for per passare arrey di struct dentro il ciclo >
 *
 * @author <zeng oscar>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
 */
+int RicercaMatricola(student[]);
 
-int RicercaCognome(student[]);
 /** ****************************************************************************************
 * @brief <questa funzione cerca il cognome della matricola con richiesta all'utente>
 * @param  <una arrey di struct student>
 * @retval <valori restituiti>
-* @see <riciesta nella funzione>
+* @see <strcmp serve per confrontare, è nella string.h>
 *
 * @author <zeng oscar>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
 */
+int RicercaCognome(student[]);
 
-void Ordine_Cognome(student[]);
 /** ****************************************************************************************
 * @brief <ordina arrey per matricola>
 * @param  <una arrey di struct student>
 * @retval <nessuno>
-* @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
+* @see <strcmp e strcpy serve per copiare sono nella string.h e ho utilizato il metodo bubble sort>
 *
 * @author <zeng oscar>
-* @version 1.0 <data> <Descrivere le modifiche apportate>
-* @version 1.1 <data> <Descrivere le modifiche apportate>
 */
+void Ordine_Cognome(student[]);
 
 //programma principale
 int main()
