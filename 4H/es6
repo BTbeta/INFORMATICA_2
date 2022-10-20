@@ -72,7 +72,7 @@ void media_studente(student []);
 
 int TrovaVotoAlto(student[]);
 /** ****************************************************************************************
-* @brief <trova il voto più alto tra arrey di struct student>
+* @brief <trova il voto piÃ¹ alto tra arrey di struct student>
 * @param  <una arrey di struct student>
 * @retval <restituise un valore int che rapresenta la posizione della cella>
 * @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
@@ -84,7 +84,7 @@ int TrovaVotoAlto(student[]);
 
 void M_cog(student[]);
 /** ****************************************************************************************
-* @brief <converte la prima lettera in maiuscolo e il resto dopo minuscolo>
+* @brief <converte la prima lettera in maiuscolo e il resto dopo minuscolo del cognome>
 * @param  <una arrey di struct student>
 * @retval <nessuna>
 * @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
@@ -96,7 +96,7 @@ void M_cog(student[]);
 
 int RicercaMatricola(student[]);
 /** ****************************************************************************************
-* @brief <inserire una breve descrizione della routine>
+* @brief <questa funzione cerca il numero della matricola con richiesta all'utente>
 * @param  <una arrey di struct student>
 * @retval <valori restituiti>
 * @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
@@ -108,7 +108,7 @@ int RicercaMatricola(student[]);
 
 int RicercaCognome(student[]);
 /** ****************************************************************************************
-* @brief <inserire una breve descrizione della routine>
+* @brief <questa funzione cerca il cognome della matricola con richiesta all'utente>
 * @param  <una arrey di struct student>
 * @retval <valori restituiti>
 * @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
@@ -120,7 +120,7 @@ int RicercaCognome(student[]);
 
 void Ordine_Cognome(student[]);
 /** ****************************************************************************************
-* @brief <inserire una breve descrizione della routine>
+* @brief <ordina arrey per matricola>
 * @param  <una arrey di struct student>
 * @retval <valori restituiti>
 * @see <See Also: Describes a cross-reference to classes, functions, methods, variables, ...>
@@ -145,11 +145,11 @@ int main()
 	system("pause");
 	system("cls");
 	a=RicercaMatricola(st);
-	printf("%d\n",a);
+	printf("e' nella cella:%d\n",a);
 	system("pause");
 	system("cls");
 	a=RicercaCognome(st);
-	printf("%d\n",a);
+	printf("e' nella cella:%d\n",a);
 	system("pause");
 	system("cls");
 	Ordine_Cognome(st);
@@ -181,6 +181,7 @@ void InsrimentoRandVoti(student st[])
 		st[j].media=m;
 		t=0;
 		m=0;
+		system("pause");
 		system("cls");
 	}
 }
@@ -229,16 +230,18 @@ void media_studente(student st[])
 int TrovaVotoAlto(student st[])
 {
 	int i,j,v=INT_MIN,r;
-	for(j=0;j<N;j++)										//qua cerca quale studente ha il voto più alto
+	for(j=0;j<N;j++)										//qua cerca quale studente ha il voto piÃ¹ alto
 	{
 		for(i=0;i<V-1;i++)
 		{
 			if(v<st[j].voti[i])
-			v=st[j].voti[i];
-			r=j;
+			{
+				v=st[j].voti[i];
+				r=j;
+			}
 		}
 	}
-	return r;												//il risultato è sempre il primo studente con il voto più alto che incontra
+	return r;												//il risultato Ã¨ sempre il primo studente con il voto piÃ¹ alto che incontra
 }
 void M_cog(student st[])
 {
@@ -266,7 +269,6 @@ int RicercaMatricola(student st[])
 	int j,a;
 	printf("insrisci la numero matricola\n");
 	scanf("%d",&a);
-	system("cls");
 	for(j=0;j<N;j++)										//qua cerca il numero della matricola
 	{
 		if(st[j].matricola==a)
@@ -282,7 +284,6 @@ int RicercaCognome(student st[])
 	char a[L];
 	printf("insrisci il cognome\n");
 	scanf("%s",a);
-	system("cls");
 	if(a[i]>='a'&&a[i]<='z')								//qua rende il prima lettera maiuscolo e il resto munuscolo
 	{
 		a[i]-=32;
