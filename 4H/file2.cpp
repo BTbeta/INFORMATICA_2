@@ -3,12 +3,12 @@
 int main()
 {
 	char buffer[MAXSTR+1];
-	char nomeFileIN[]={"C:\\Users\\Gejin\\OneDrive\\Desktop\\programmi_di_scuola\\2022_2023"};
+	char nomeFileIN[]={"dio.txt"};
 	printf("nome del file da scrivere:");
 	scanf("%s"nomeFileIN);
 	int err1;
-	FILE *pFile;
-	pFile=fopen_s(nomeFileIN,"w");
+	FILE* pFile;
+	fopen_s(pFile,nomeFileIN,"w");
 	if(err1==0)
 	{
 		for(int i=0;i<PAROLE;x++)
