@@ -5,10 +5,10 @@ int main()
 	char buffer[MAXSTR+1];
 	char nomeFileIN[]={"dio.txt"};
 	printf("nome del file da scrivere:");
-	scanf("%s"nomeFileIN);
+	scanf("%c"nomeFileIN);
 	int err1;
 	FILE* pFile;
-	fopen_s(pFile,nomeFileIN,"w");
+	fopen_s(&pFile,nomeFileIN,"w");
 	if(err1==0)
 	{
 		for(int i=0;i<PAROLE;x++)
