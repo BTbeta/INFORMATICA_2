@@ -2,17 +2,19 @@
 
 int main()
 {
-	int c;
+	char dio[]={"dio.txt"};
+	int err;
+	char c;
 	FILE* puntaFile;
-	fopen_s(&puntaFile,"dio.txt","r");
-	if(puntaFile==0)
+	puntaFile=fopen(dio,"r");
+	if(puntaFile!=NULL)
 	{
-		while(feof(puntaFile))
+		while(!feof(puntaFile))
 		{
 			c=fgetc(puntaFile);
-			printf("%s",c);
+			printf("%c",c);
 		}
-		fclose(puntaFile);
+		err=fclose(puntaFile);
 	}
 	else
 	{
