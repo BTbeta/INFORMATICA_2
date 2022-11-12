@@ -28,7 +28,7 @@ int main()
 			c=fgetc(pFile1);
 			if(c>='a'&&c<='z')
 			c-=32;
-			fputc(c,pFile2);
+			fputc((char),c,pFile2);
 		}
 		err1=fclose(pFile1);
 		err2=fclose(pFile2);
