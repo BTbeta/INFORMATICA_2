@@ -2,8 +2,8 @@
 * \mainpage <DES01_PAG30_A>
 *
 * @brief <inserire una breve descrizione del progetto>
-* <specifiche del progetto>
-* <specifiche del collaudo>
+* <il programma copia le frasi nel file di testo del file1 e rende tutto maiuscolo e lo mette nel file di testo del file2>
+* <se non si aprono i uno dei due file fa visualizzare un messagio di errore e se si apre visualozza il completamento>
 * 
 * @author <zeng osacr hao>
 * @date <12/11/2022> 
@@ -20,7 +20,7 @@ int main()
 	FILE* pFile2;
 	char c;
 	pFile1=fopen(file1,"r");
-	pFile2=fopen(file2,"r");
+	pFile2=fopen(file2,"w");
 	if(pFile1!=NULL&&pFile2!=NULL)
 	{
 		while(!feof(pFile1))
@@ -28,7 +28,7 @@ int main()
 			c=fgetc(pFile1);
 			if(c>='a'&&c<='z')
 			c-=32;
-			fputc((char),c,pFile2);
+			fputs(c,pFile2);
 		}
 		err1=fclose(pFile1);
 		err2=fclose(pFile2);
