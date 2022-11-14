@@ -1,5 +1,5 @@
 /** ****************************************************************************************
-* \mainpage <DES01_PAG30_A>
+* \mainpage <DES01_PAG30_C>
 *
 * @brief <visualizzare quante letere,parole e righe>
 * <carateri conta quanti carateri cisono senza \0, parola conta quante parole ci sono e anche righe>
