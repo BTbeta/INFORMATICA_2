@@ -1,5 +1,5 @@
 /** ****************************************************************************************
-* \mainpage <DES01_PAG30_A>
+* \mainpage <DES01_PAG30_B>
 *
 * @brief <inserire una breve descrizione del progetto>
 * <il programma copia le frasi dal file di testo del file1 e lo copia nel file di testo del file2>
