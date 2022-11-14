@@ -2,7 +2,7 @@
 * \mainpage <DES01_PAG30_A>
 *
 * @brief <inserire una breve descrizione del progetto>
-* <il programma copia le frasi nel file di testo del file1 e rende tutto maiuscolo e lo mette nel file di testo del file2>
+* <il programma copia le frasi del file di testo del file1 e rende tutto maiuscolo e lo mette nel file di testo del file2>
 * <se non si aprono i uno dei due file fa visualizzare un messagio di errore e se si apre visualozza il completamento>
 * 
 * @author <zeng osacr hao>
