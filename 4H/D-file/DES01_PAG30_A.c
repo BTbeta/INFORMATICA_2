@@ -14,27 +14,28 @@
 
 int main()
 {
-	char file1[]={"dio.txt"},file2[]={"dio(1).txt"};
-	int err1,err2;
-	FILE* pFile1;
-	FILE* pFile2;
-	char c;
-	pFile1=fopen(file1,"r");
-	pFile2=fopen(file2,"w");
-	if(pFile1!=NULL&&pFile2!=NULL)
+	char file1[]={"dio.txt"},file2[]={"dio(1).txt"};	//dichiarando i nomi dei file
+	int err1,err2;										//interi utilizzato per funzionare fclose
+	FILE* pFile1;										//il seglo del file1
+	FILE* pFile2;										//il segno del file2
+	char c;												//è utilizato per prendere le lettera e modificarli
+	pFile1=fopen(file1,"r");							//apre file1
+	pFile2=fopen(file2,"w");							//apre file2
+	if(pFile1!=NULL&&pFile2!=NULL)						//se i due file si aprono
 	{
-		while(!feof(pFile1))
+		while(!feof(pFile1))							//il ciclo continua fino quando è uguale a \0
 		{
-			c=fgetc(pFile1);
+			c=fgetc(pFile1);							//prende una lettera 
 			if(c>='a'&&c<='z')
 			c-=32;
-			fputs(c,pFile2);
+			if(!feof(pFile1))
+			fputc(c,pFile2);
 		}
 		err1=fclose(pFile1);
 		err2=fclose(pFile2);
 		printf("operazione completo");
 	}
-	else
+	else												//se è falso visializza un errore
 	{
 		printf("\nil file non puo'essere aperto");
 	}
