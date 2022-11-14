@@ -25,7 +25,7 @@ int main()
 		while(!feof(pFile1))							//il ciclo continua fino quando è uguale a \0
 		{
 			c=fgetc(pFile1);							//prende una lettera 
-			if(!feof(pFile1))							//se è diverso da \n
+			if(!feof(pFile1))							//se è diverso da \0
 			fputc(c,pFile2);							//se è vero lo mette nel file2
 		}
 		err1=fclose(pFile1);							//chiusura del file1
