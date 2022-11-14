@@ -8,7 +8,8 @@
 * @author <zeng osacr hao>
 * @date <12/11/2022> 
 * @version 1.0 <12/11/2022> Versione iniziale
-* @version 1.1 <data> <Descrivere le modifiche apportate>
+* @version 1.1 <13/11/2022> <correzione del programma>
+* @version 1.2 <14/11/2022> <correzione del programma e comento>
 */
 #include<stdio.h>
 
@@ -26,13 +27,13 @@ int main()
 		while(!feof(pFile1))							//il ciclo continua fino quando è uguale a \0
 		{
 			c=fgetc(pFile1);							//prende una lettera 
-			if(c>='a'&&c<='z')
-			c-=32;
-			if(!feof(pFile1))
-			fputc(c,pFile2);
+			if(c>='a'&&c<='z')							//se la lettera presa è minuscolo
+			c-=32;										//se è vero fa diventare la letera minuscola in maiuscola
+			if(!feof(pFile1))							//se è diverso da \n
+			fputc(c,pFile2);							//se è vero lo mette nel file2
 		}
-		err1=fclose(pFile1);
-		err2=fclose(pFile2);
+		err1=fclose(pFile1);							//chiusura del file1
+		err2=fclose(pFile2);							//chiusura del file2
 		printf("operazione completo");
 	}
 	else												//se è falso visializza un errore
