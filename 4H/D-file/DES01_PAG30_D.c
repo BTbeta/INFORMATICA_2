@@ -28,22 +28,22 @@ int main()
 		while(!feof(pFile1))													//il ciclo continua fino quando è uguale a \0
 		{
 			c=fgetc(pFile1);													//prende un caratere
-			if(c>='0'&&c<='9')													//se è diverso da \n
+			if(c>='0'&&c<='9')													//se è un numero
 			{
-				if(c%2==0)
+				if(c%2==0)														//se è fari 
 				{
-					fputc(c,pFile2);
+					//se è vero mete il numero nel file pari e uno spazio
+					fputc(c,pFile2);											
 					fputc((int)' ',pFile2);
 				}
 				else
 				{
+					//se è falso mete il numero nel file dispari e uno spazio
 					fputc(c,pFile3);
 					fputc((int)' ',pFile3);
 				}
 			}
 		}
-		fputc((int)'\0',pFile2);
-		fputc((int)'\0',pFile3);
 		err1=fclose(pFile1);													//chiusura del numeri
 		err2=fclose(pFile2);													//chiusura del pari
 		err3=fclose(pFile3);													//chiusura del dispari
