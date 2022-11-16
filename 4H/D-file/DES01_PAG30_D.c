@@ -16,9 +16,9 @@ int main()
 {
 	char numeri[]={"numeri.txt"},pari[]={"pari.txt"},dispari[]={"dispari.txt"};	//dichiarando il nomi del file
 	int err1,err2,err3;															//intero utilizzato per funzionare fclose
-	FILE* pFile1;																//il seglo del numeri
-	FILE* pFile2;																//il seglo del pari
-	FILE* pFile3;																//il seglo del dispari
+	FILE* pFile1;																//il segno del file numeri
+	FILE* pFile2;																//il segno del file pari
+	FILE* pFile3;																//il segno del file dispari
 	char c;	   																	//è utilizato per prendere le lettera
 	pFile1=fopen(numeri,"r");													//apre numeri
 	pFile2=fopen(pari,"w");														//apre pari
