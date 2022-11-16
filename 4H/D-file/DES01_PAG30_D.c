@@ -32,12 +32,12 @@ int main()
 			{
 				if(c%2==0)
 				{
-					fputs(c,pFile2);
+					fputc(c,pFile2);
 					fputc((int)' ',pFile2);
 				}
 				else
 				{
-					fputs(c,pFile3);
+					fputc(c,pFile3);
 					fputc((int)' ',pFile3);
 				}
 			}
