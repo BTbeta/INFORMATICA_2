@@ -9,6 +9,7 @@
 * @date <12/11/2022> 
 * @version 1.0 <14/11/2022> Versione iniziale
 * @version 1.1 <16/11/2022> <completamento del programma e comenti>
+* @version 1.2 <23/11/2022> <si crea un secondo file>
 */
 #include<stdio.h>
 
@@ -21,8 +22,8 @@ int main()
 	FILE* pFile3;																//il segno del file dispari
 	char c;	   																	//è utilizato per prendere le lettera
 	pFile1=fopen(numeri,"r");													//apre numeri
-	pFile2=fopen(pari,"w");														//apre pari
-	pFile3=fopen(dispari,"w");													//apre dispari
+	pFile2=fopen(pari,"w+");													//apre pari
+	pFile3=fopen(dispari,"w+");													//apre dispari
 	if(pFile1!=NULL&&pFile2!=NULL&&pFile3!=NULL)								//se i file si aprono
 	{
 		while(!feof(pFile1))													//il ciclo continua fino quando è uguale a \0
