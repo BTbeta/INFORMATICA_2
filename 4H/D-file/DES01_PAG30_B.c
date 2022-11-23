@@ -1,5 +1,5 @@
 /** ****************************************************************************************
-* \mainpage <DES01_PAG30_B>
+* \mainpage <DES01_PAG30_A>
 *
 * @brief <inserire una breve descrizione del progetto>
 * <il programma copia le frasi dal file di testo del file1 e lo copia nel file di testo del file2>
@@ -8,6 +8,7 @@
 * @author <zeng osacr hao>
 * @date <12/11/2022> 
 * @version 1.0 <14/11/2022> Versione iniziale
+* @version 1.1 <23/11/2022> <si crea un secondo file>
 */
 #include<stdio.h>
 
@@ -19,13 +20,13 @@ int main()
 	FILE* pFile2;										//il segno del file2
 	char c;												//è utilizato per prendere le lettera e modificarli
 	pFile1=fopen(file1,"r");							//apre file1
-	pFile2=fopen(file2,"w");							//apre file2
+	pFile2=fopen(file2,"w+");							//apre file2
 	if(pFile1!=NULL&&pFile2!=NULL)						//se i due file si aprono
 	{
 		while(!feof(pFile1))							//il ciclo continua fino quando è uguale a \0
 		{
 			c=fgetc(pFile1);							//prende una lettera 
-			if(!feof(pFile1))							//se è diverso da \0
+			if(!feof(pFile1))							//se è diverso da \n
 			fputc(c,pFile2);							//se è vero lo mette nel file2
 		}
 		err1=fclose(pFile1);							//chiusura del file1
