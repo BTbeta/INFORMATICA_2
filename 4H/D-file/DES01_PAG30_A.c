@@ -10,6 +10,7 @@
 * @version 1.0 <12/11/2022> Versione iniziale
 * @version 1.1 <13/11/2022> <correzione del programma>
 * @version 1.2 <14/11/2022> <correzione del programma e comento>
+* @version 1.3 <23/11/2022> <si crea un secondo file>
 */
 #include<stdio.h>
 
@@ -21,7 +22,7 @@ int main()
 	FILE* pFile2;										//il segno del file2
 	char c;												//è utilizato per prendere le lettera e modificarli
 	pFile1=fopen(file1,"r");							//apre file1
-	pFile2=fopen(file2,"w");							//apre file2
+	pFile2=fopen(file2,"w+");							//apre file2
 	if(pFile1!=NULL&&pFile2!=NULL)						//se i due file si aprono
 	{
 		while(!feof(pFile1))							//il ciclo continua fino quando è uguale a \0
