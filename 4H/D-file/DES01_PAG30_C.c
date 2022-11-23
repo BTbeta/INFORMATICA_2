@@ -1,9 +1,9 @@
 /** ****************************************************************************************
-* \mainpage <DES01_PAG30_C>
+* \mainpage <DES01_PAG30_A>
 *
-* @brief <visualizzare quante letere,parole e righe>
-* <carateri conta quanti carateri cisono senza \0, parola conta quante parole ci sono e anche righe>
-* <se non si aprono i uno dei due file fa visualizzare un messagio di errore e se si apre visualozza quante letere,parole e frasi>
+* @brief <inserire una breve descrizione del progetto>
+* <il programma copia le frasi dal file di testo del file1 e lo copia nel file di testo del file2>
+* <se non si aprono i uno dei due file fa visualizzare un messagio di errore e se si apre visualozza il completamento>
 * 
 * @author <zeng osacr hao>
 * @date <12/11/2022> 
@@ -17,8 +17,8 @@ int main()
 	int err1;										//intero utilizzato per funzionare fclose
 	FILE* pFile1;									//il seglo del file1
 	char c;	   										//è utilizato per prendere le lettera
-	char d=0;								//utilzato per confrontare
-	int carateri=0,parole=0,righe=1;				
+	char d=0;										//utilzato per confrontare
+	int carateri=0,parole=1,righe=1;				
 	pFile1=fopen(file1,"r");						//apre file1
 	if(pFile1!=NULL)								//se il file si aprono
 	{
@@ -27,10 +27,9 @@ int main()
 			c=fgetc(pFile1);						//prende una lettera 
 			if(!feof(pFile1))						//se è diverso da \n
 			carateri++;
-			//se d è una letera e c è uno spazio o invio o \0
-			if(d>='a'&&d<='z'||d>='A'&&d<='B')	
+			if(d>='a'&&d<='z'||d>='A'&&d<='B')		//se d è una letera e c è uno spazio o invio o \0
 			{
-				if(c==' '||c=='\0'||c=='\n')
+				if(c==' '||!feof(pFile1)||c=='\n')
 				parole++;
 			}
 			if(c==13)								//se c=invio
