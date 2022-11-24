@@ -99,7 +99,7 @@ void cesareDecrypt(char f1[],char f2[])
 		if(c>='a'&&c<='z'||c>='A'&&c<='Z')		//controllo se è una letera
 		{
 			c+=3;								//mette 3 letere prima
-			if(c<'A'&&c>'z'||c>'Z')				//se è più grande di Z nel codice ascii
+			if(c<'a'&&c>'A'||c>'z')				//se è più grande di Z nel codice ascii
 			{
 				c-=23;							//prende la letera correta							
 			}
