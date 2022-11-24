@@ -10,7 +10,7 @@
 * @version 1.0 <14/11/2022> Versione iniziale
 * @version 1.1 <16/11/2022> <completamento del programma e comenti>
 * @version 1.2 <23/11/2022> <si crea un secondo file ,visualizza l'apertura del file e modifiche nelle funzioni>
-* @version 1.3 <23/11/2022> <correzione>
+* @version 1.3 <24/11/2022> <correzione>
 */
 #include<stdio.h>
 
