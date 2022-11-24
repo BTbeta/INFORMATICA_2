@@ -10,6 +10,7 @@
 * @version 1.0 <14/11/2022> Versione iniziale
 * @version 1.1 <16/11/2022> <completamento del programma e comenti>
 * @version 1.2 <23/11/2022> <si crea un secondo file>
+* @version 1.3 <23/11/2022> <agiungere un printf>
 */
 #include<stdio.h>
 
@@ -48,6 +49,7 @@ int main()
 		err1=fclose(pFile1);													//chiusura del numeri
 		err2=fclose(pFile2);													//chiusura del pari
 		err3=fclose(pFile3);													//chiusura del dispari
+		printf("operazione completo");
 	}
 	else																		//se è falso visializza un errore
 	{
