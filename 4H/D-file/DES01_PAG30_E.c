@@ -75,7 +75,7 @@ void cesareCrypt(char f1[],char f2[])
 			c-=3;								//mette 3 letere prima
 			if(c<'a'&&c>'Z'||c<'A')				//se è più picolo di A nel codice ascii
 			{
-				c+=23;							//prende la letera correta
+				c+=26;							//prende la letera correta
 			}
 		}
 		if(!feof(pFile1))						//se è diverso da \0
@@ -99,9 +99,9 @@ void cesareDecrypt(char f1[],char f2[])
 		if(c>='a'&&c<='z'||c>='A'&&c<='Z')		//controllo se è una letera
 		{
 			c+=3;								//mette 3 letere prima
-			if(c<'a'&&c>'A'||c>'z')				//se è più grande di Z nel codice ascii
+			if(c<'a'&&c>'Z'||c>'z')				//se è più grande di Z nel codice ascii
 			{
-				c-=23;							//prende la letera correta							
+				c-=26;							//prende la letera correta							
 			}
 		}
 		if(!feof(pFile1))						//se è diverso da \0
