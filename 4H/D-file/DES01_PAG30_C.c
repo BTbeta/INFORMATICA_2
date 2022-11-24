@@ -8,6 +8,7 @@
 * @author <zeng osacr hao>
 * @date <12/11/2022> 
 * @version 1.0 <14/11/2022> Versione iniziale
+* @version 1.1 <24/11/2022> <correzione del programma>
 */
 #include<stdio.h>
 
@@ -18,7 +19,7 @@ int main()
 	FILE* pFile1;									//il seglo del file1
 	char c;	   										//è utilizato per prendere le lettera
 	char d=0;										//utilzato per confrontare
-	int carateri=0,parole=1,righe=1;				
+	int carateri=0,parole=0,righe=0;				
 	pFile1=fopen(file1,"r");						//apre file1
 	if(pFile1!=NULL)								//se il file si aprono
 	{
@@ -29,10 +30,10 @@ int main()
 			carateri++;
 			if(d>='a'&&d<='z'||d>='A'&&d<='B')		//se d è una letera e c è uno spazio o invio o \0
 			{
-				if(c==' '||!feof(pFile1)||c=='\n')
+				if(c==' '||c==EOF||c=='\n')
 				parole++;
 			}
-			if(c==13)								//se c=invio
+			if(c=='\n'||c==EOF)								//se c=invio
 			righe++;
 			d=c;
 		}
