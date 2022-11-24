@@ -10,6 +10,7 @@
 * @version 1.0 <14/11/2022> Versione iniziale
 * @version 1.1 <16/11/2022> <completamento del programma e comenti>
 * @version 1.2 <23/11/2022> <si crea un secondo file ,visualizza l'apertura del file e modifiche nelle funzioni>
+* @version 1.3 <23/11/2022> <correzione>
 */
 #include<stdio.h>
 
@@ -47,7 +48,7 @@ int main()
 	if(pFile1!=NULL&&pFile2!=NULL)					//se i due file si aprono
 	{
 		cesareCrypt(file1,file2);					//cripta il messagio
-		cesareDecrypt(file1,file2);					//de cripta il messagio
+		cesareDecrypt(file2,file1);					//de cripta il messagio
 		printf("operazione completo");
 	}
 	else											//se è falso visializza un errore
