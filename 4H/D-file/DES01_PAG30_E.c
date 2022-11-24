@@ -77,8 +77,9 @@ void cesareCrypt(char f1[],char f2[])
 			{
 				c+=24;							//prende la letera correta
 			}
-			if(!feof(pFile1))					//se è diverso da \0
-			fputc(c,pFile2);					//se è vero lo mette nel file2
+		}
+		if(!feof(pFile1))						//se è diverso da \0
+		fputc(c,pFile2);						//se è vero lo mette nel file2
 		}
 	}
 	err1=fclose(pFile1);						//chiusura del file1
@@ -103,9 +104,9 @@ void cesareDecrypt(char f1[],char f2[])
 			{
 				c-=24;							//prende la letera correta							
 			}
-			if(!feof(pFile1))					//se è diverso da \0
-			fputc(c,pFile2);					//se è vero lo mette nel file2
 		}
+		if(!feof(pFile1))						//se è diverso da \0
+		fputc(c,pFile2);						//se è vero lo mette nel file2
 	}
 	err1=fclose(pFile1);						//chiusura del file1
 	err2=fclose(pFile2);						//chiusura del file2
