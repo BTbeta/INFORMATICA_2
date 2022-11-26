@@ -28,9 +28,9 @@ int main()
 			c=fgetc(pFile1);						//prende una lettera 
 			if(!feof(pFile1))						//se è diverso da \n
 			carateri++;
-			if(d>='a'&&d<='z'||d>='A'&&d<='B')		//se d è una letera e c è uno spazio o invio o \0
+			if(d>='a'&&d<='z'||d>='A'&&d<='Z')		//se d è una letera e c è uno spazio o invio o \0
 			{
-				if(c==' '||c==EOF||c=='\n')
+				if(c<'A'||c>'Z'&&c<'a'||c>'z')
 				parole++;
 			}
 			if(c=='\n'||c==EOF)								//se c=invio
