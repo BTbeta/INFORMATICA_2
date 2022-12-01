@@ -5,7 +5,7 @@
 * <esendo che quando i numeri sono tirati fuori dal testo sono dei carateri come numeri allora controlo se sono numeri e confronto se è pari o dispari e li mette in quei due file di testo corispodenti>
 * <se non si aprono i uno dei due file fa visualizzare un messagio di errore e se si apre visualozza il completamento>
 * 
-* @author <zeng osacr hao>
+* @author <zeng oscar hao>
 * @date <12/11/2022> 
 * @version 1.0 <14/11/2022> Versione iniziale
 * @version 1.1 <16/11/2022> <completamento del programma e comenti>
