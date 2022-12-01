@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define V 3
+
+struct stud
+{
+	char cognome;
+	data nascita;
+	int voti[V];
+}typedef stud;
+struct data
+{
+	int g;
+	int m;
+	int a;
+}typedef data;
+
+void carica(char[],int);
+void stampa(char[]);
+
+int main()
+{
+	char file1[]={"nome.txt"};
+	int err1;	
+	printf("quanti studenti da inserire\n");
+	scanf("%d",&n);				
+	FILE* pFile1;									
+	char c;							
+	pFile1=fopen(file1,"rb+");					
+	if(pFile1!=NULL&&pFile2!=NULL)				
+	{
+		carica(file1,n);
+		system("pause");
+		system("cls");			
+		stampa(file1);					
+		printf("operazione completo");
+	}
+	else										
+	{
+		printf("\nil file non puo'essere aperto");
+	}
+}
+
+void carica(char x[],int y)
+{
+	stud buffer;
+	int err,n;
+	FILE* pf;
+	pf=fopen(x,"wb");
+	for(int i=0;i<y;i++)
+	{
+		printf("inserisci cognome:");
+		scanf("%s", buffer.cognome);
+		printf("inserisci data di nascita:");
+		scanf("%d",&buffer.nascita.g);
+		printf("/");
+		scanf("%d",&buffer.nascita.m);
+		printf("/");
+		scanf("%d",&buffer.nascita.a);
+		printf("inserisci voti:\n");
+		for(int j=0;j<V;j++)
+		scanf("%d",&buffer.voti[j]);
+		printf("\n");
+		n=fwrite(&buffer,sizeof(buffer),1,pf);
+	}
+	err=fclose(pf);
+}
+void stampa(char x[])
+{
+	stud buffer;
+	int err,n;
+	FILE* pf;
+	pf=fopen(x,"rb");
+	while(!feof())
+	{
+		n=fread(&buffer,sizeof(buffer),1,pf);
+		printf("inserisci cognome:%s",buffer.cognome);
+		printf("inserisci data di nascita:%d/%d/%d",buffer.nascita.g,buffer.nascita.m,buffer.nascita.a);
+		printf("inserisci voti:\n");
+		for(int j=0;j<V;j++)
+		printf("%d\n"&buffer.voti[j]);
+		printf("\n");
+	}
+}
