@@ -1,3 +1,14 @@
+/** ****************************************************************************************
+* \mainpage <DES02>
+*
+* @brief <prova funzioni >
+* <esendo che quando i numeri sono tirati fuori dal testo sono dei carateri come numeri allora controlo se sono numeri e confronto se è pari o dispari e li mette in quei due file di testo corispodenti>
+* <se non si aprono i uno dei due file fa visualizzare un messagio di errore e se si apre visualozza il completamento>
+* 
+* @author <zeng oscar hao>
+* @date <12/11/2022> 
+* @version 1.0 <14/11/2022> Versione iniziale
+*/
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -16,6 +27,15 @@ struct data
 	int a;
 }typedef data;
 
+/** ****************************************************************************************
+* @brief <crypta il messagio nel file di testo>
+* @param  <un FILE e una stringa>
+* @retval <nessuna>
+* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+*
+* @author <zeng oscar>
+* @version 1.0 <23/11/2022> <nuovo algoritmo>
+*/
 void carica(char[],int);
 void stampa(char[]);
 
