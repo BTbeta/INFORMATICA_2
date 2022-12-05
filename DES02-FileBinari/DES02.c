@@ -14,6 +14,7 @@
 #include<stdlib.h>
 
 #define V 3
+#define L 10
 
 struct data
 {
@@ -23,7 +24,7 @@ struct data
 }typedef data;
 struct stud
 {
-	char cognome;
+	char cognome[Lgcc];
 	data nascita;
 	int voti[V];
 }typedef stud;
@@ -65,7 +66,7 @@ int main()
 	int err1,n;	
 	FILE* pFile1;									
 	char c;							
-	pFile1=fopen(file1,"r+");					
+	pFile1=fopen(file1,"rb+");					
 	if(pFile1!=NULL)				
 	{
 		printf("quanti studenti da inserire\n");
@@ -77,7 +78,7 @@ int main()
 	}
 	else										
 	{
-		printf("\nil file non puo'essere aperto");
+		printf("\nil file non puo'essere aperto\n");
 	}
 }
 
