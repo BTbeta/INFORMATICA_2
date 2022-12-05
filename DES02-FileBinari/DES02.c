@@ -31,7 +31,7 @@ struct stud
 
 /** ****************************************************************************************
 * @brief <inserimento dei informazioni in un file di reord>
-* @param  <un char e una intero(char fileName[], int numRecord)>
+* @param  <una stringa e una intero(char fileName[], int numRecord)>
 * @retval <nessuna>
 * @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
 *
@@ -42,7 +42,7 @@ void inserisciRecord(char[],int);
 
 /** ****************************************************************************************
 * @brief <visualizazione dei informazioni in un file di reord>
-* @param  <un char(char fileName[])>
+* @param  <una stringa(char fileName[])>
 * @retval <nessuna>
 * @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
 *
@@ -52,12 +52,48 @@ void inserisciRecord(char[],int);
 */
 void stampaFile(char[]);
 
-int ricercaRecord(char fileName[], char cognome[]);
+/** ****************************************************************************************
+* @brief <cerca quelli con lo stesso cognome e visualizza cognome,età e media>
+* @param  <due stringe(char fileName[], char cognaome)>
+* @retval <un intero che rapresenta la posizione del primo record che trova>
+* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+*
+* @author <zeng oscar>
+* @version 1.0 <5/12/2022> <nuovo algoritmo>
+*/
+int ricercaRecord(char [], char []);
 
-int stampaRecord(char fileName[], int posizione);
+/** ****************************************************************************************
+* @brief <visualizazione dei informazioni in un file di reord>
+* @param  <una stringa e una intero(char fileName[], int posizione)>
+* @retval <nessuna>
+* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+*
+* @author <zeng oscar>
+* @version 1.0 <1/12/2022> <nuovo algoritmo>
+*/
+int stampaRecord(char [], int);
 
-int correggiRecord(char fileName[]);
+/** ****************************************************************************************
+* @brief <visualizazione dei informazioni in un file di reord>
+* @param  <un char(char fileName[])>
+* @retval <nessuna>
+* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+*
+* @author <zeng oscar>
+* @version 1.0 <1/12/2022> <nuovo algoritmo>
+*/
+int correggiRecord(char []);
 
+/** ****************************************************************************************
+* @brief <visualizazione dei informazioni in un file di reord>
+* @param  <un char(char fileName[])>
+* @retval <nessuna>
+* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+*
+* @author <zeng oscar>
+* @version 1.0 <1/12/2022> <nuovo algoritmo>
+*/
 int numeroRecord(char fileName[]);
 
 int main()
@@ -85,7 +121,7 @@ int main()
 void inserisciRecord(char x[],int y)
 {
 	stud buffer;
-	int err,n;
+	int err;
 	FILE* pf;
 	pf=fopen(x,"wb");
 	for(int i=0;i<y;i++)
@@ -102,27 +138,62 @@ void inserisciRecord(char x[],int y)
 		for(int j=0;j<V;j++)
 		scanf("%d",&buffer.voti[j]);
 		printf("\n");
-		n=fwrite(&buffer,sizeof(buffer),1,pf);
+		err=fwrite(&buffer,sizeof(buffer),1,pf);
 	}
 	err=fclose(pf);
 }
+
 void stampaFile(char x[])
 {
 	stud buffer;
-	int err,n;
+	int err;
 	FILE* pf;
 	pf=fopen(x,"rb");
 	while(!feof(pf))
 	{
-		n=fread(&buffer,sizeof(buffer),1,pf);
-		printf("inserisci cognome:%s",buffer.cognome);
-		printf("inserisci data di nascita:");
+		err=fread(&buffer,sizeof(buffer),1,pf);
+		printf("cognome:%s\n",buffer.cognome);
+		printf("data di nascita:");
 		printf("%d/",buffer.nascita.g);
 		printf("%d/",buffer.nascita.m);
-		printf("%d",buffer.nascita.a);
-		printf("inserisci voti:\n");
-		for(int j=0;j<V;j++)
-		printf("%d\n",&buffer.voti[j]);
+		printf("%d\n",buffer.nascita.a);
+		printf("voti:\n");
+		for(int i=0;i<V;i++)
+		printf("%d\n",&buffer.voti[i]);
 		printf("\n");
 	}
 }
+
+int ricercaRecord(char x[], char y[])
+{
+	stud buffer;
+	int err,n=0,p=0,media,eta,tot=0;
+	FILE* pf;
+	pf=fopen(x,"rb");
+	while(!feof(pf)&&n==0)
+	{
+		err=fread(&buffer,sizeof(buffer),1,pf);
+		if(buffer.cognome==y)
+		{
+			printf("cognome:%s\n",buffer.cognome);
+			
+			printf("eta':%s\n",media);
+			for(int i=0;i<V;i++)
+			tot+=buffer.voti[i];
+			media=tot/V;
+			printf("media dei voti:%s\n",media);
+			n=1;
+		}
+		if(n==0)
+		{
+			p++;
+		}
+	}
+	return p;
+}
+
+int stampaRecord(char [], int)
+
+int correggiRecord(char [])
+
+int numeroRecord(char fileName[])
