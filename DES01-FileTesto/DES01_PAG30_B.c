@@ -30,6 +30,7 @@ int main()
 			if(!feof(pFile1))							//se è diverso da \n
 			fputc(c,pFile2);							//se è vero lo mette nel file2
 		}
+		err1=fclose(pFile1);							//chiusura del file1
 		err2=fclose(pFile2);							//chiusura del file2
 		printf("\noperazione completo");
 	}
