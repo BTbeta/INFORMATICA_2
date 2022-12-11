@@ -10,7 +10,8 @@
 * @version 1.0 <1/12/2022>  Versione iniziale
 * @version 1.0 <1/12/2022>  <proseguimento del programma>
 */
-#include<stdio.h>
+#include<string.h>
+#include<stdio.h>		//è utilizzato per il funzionamento del file
 #include<stdlib.h>
 
 #define V 3
@@ -24,7 +25,7 @@ struct data
 }typedef data;
 struct stud
 {
-	char cognome[Lgcc];
+	char cognome[L];
 	data nascita;
 	int voti[V];
 }typedef stud;
@@ -196,11 +197,11 @@ int ricercaRecord(char x[], char y[])
 	while(!feof(pf)&&n==0)
 	{
 		err=fread(&buffer,sizeof(buffer),1,pf);
-		if(buffer.cognome==y)
+		if(strcmp(buffer.cognome,y)==0)
 		{
 			printf("cognome:%s\n",buffer.cognome);
 			
-			printf("eta':%s\n",media);
+			printf("eta':%s\n",eta);
 			for(int i=0;i<V;i++)
 			tot+=buffer.voti[i];
 			media=tot/V;
