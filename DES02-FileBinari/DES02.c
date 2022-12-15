@@ -1,12 +1,12 @@
 /** ****************************************************************************************
-* \mainpage <DES02>
+* \mainpage DES02.c
 *
-* @brief <prova funzioni di file di record>
+* @brief prova funzioni di file di record
 * <specifiche del progetto>
 * <specifiche del collaudo>
 * 
-* @author <zeng oscar hao>
-* @date <1/12/2022> 
+* @author Zeng oscar hao
+* @date 1/12/2022
 * @version 1.0 <1/12/2022>  Versione iniziale
 * @version 1.1 <1/12/2022>  <proseguimento del programma>
 * @version 1.2 <14/12/2022>  <comentare il programma>
@@ -24,6 +24,7 @@ struct data				//creazione di un record
 	int m;				//mese
 	int a;				//anno
 }typedef data;			//nome di defoult data
+
 struct stud				//creazione di un record
 {
 	char cognome[L];
@@ -35,7 +36,7 @@ struct stud				//creazione di un record
 * @brief <inserimento dei informazioni in un file di reord>
 * @param  <una stringa e una intero(char fileName[], int numRecord)>
 * @retval <nessuna>
-* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+* @see <fwrite serve ad agiungere o sovrascivere le informazioni nel file e sizeof calcola la grandezza del variabile, sono nella libreia stdio.h>
 *
 * @author <zeng oscar>
 * @version 1.0 <1/12/2022> <nuovo algoritmo>
@@ -46,7 +47,7 @@ void inserisciRecord(char[],int);
 * @brief <visualizazione dei informazioni in un file di reord>
 * @param  <una stringa(char fileName[])>
 * @retval <nessuna>
-* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+* @see <fread serve a tirare fuori le informazioni dal file, è nella libreia stdio.h>
 *
 * @author <zeng oscar>
 * @version 1.0 <1/12/2022> <nuovo algoritmo>
@@ -58,7 +59,7 @@ void stampaFile(char[]);
 * @brief <cerca quelli con lo stesso cognome e visualizza cognome,età e media>
 * @param  <due stringe(char fileName[], char cognaome)>
 * @retval <un intero che rapresenta la posizione del primo record che trova>
-* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+* @see <strcmp serve a confrontare due stringhe e dice se sono uguali o più picolo o più grande, è nella libreia stdio.h>
 *
 * @author <zeng oscar>
 * @version 1.0 <4/12/2022> <nuovo algoritmo>
@@ -69,7 +70,7 @@ int ricercaRecord(char [], char []);
 * @brief <controlla la posizione inserito nel parametro e visualizza il record>
 * @param  <una stringa e una intero(char fileName[], int posizione)>
 * @retval <da due valori 0 c'è il record e -1 non c'è record>
-* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
+* @see <fseek serve per posizionamento del puntatore e rida la posizione sono nella libreia stdlib.h e time.h>
 *
 * @author <zeng oscar>
 * @version 1.0 <7/12/2022> <nuovo algoritmo>
@@ -80,7 +81,6 @@ int stampaRecord(char [], int);
 * @brief <controlla la posizione inserito nel parametro e modifica il record>
 * @param  <una stringa e una intero(char fileName[], int posizione)>
 * @retval <da due valori 0 c'è il record e -1 non c'è record>
-* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
 *
 * @author <zeng oscar>
 * @version 1.0 <7/12/2022> <nuovo algoritmo>
@@ -91,7 +91,6 @@ int correggiRecord(char [], int);
 * @brief <controlla quanti record ci sono>
 * @param  <un char(char fileName[])>
 * @retval <un intero che rapresenta quanti record sono>
-* @see <rand serve genera numeri casuali e con srand nel main serve per funzionare rand sono nella libreia stdlib.h e time.h>
 *
 * @author <zeng oscar>
 * @version 1.0 <7/12/2022> <nuovo algoritmo>
@@ -106,6 +105,7 @@ int main()
 	int a;															//variabile per ricevere i numeri dalla funzione
 	FILE* pFile1;													//segno del file
 	char c[L];														//variabile per ricevere parole
+
 	pFile1=fopen(file1,"rb+");										//apre file1
 	if(pFile1!=NULL)												//se il file si apre
 	{																//se è vero fa queste cose sotto
@@ -121,7 +121,7 @@ int main()
 		system("cls");
 		//funzione ricercaRecord
 		printf("inserisci il cognome dello studente\n");
-		scanf("%c",&c);		
+		scanf("%s",c);		
 		a=ricercaRecord(file1,c);
 		system("pause");
 		system("cls");
@@ -130,13 +130,13 @@ int main()
 		scanf("%d",&n);	
 		a=stampaRecord(file1,n);
 		if(a==-1)
-		printf("record non esistente",a);	
+		printf("record non esistente");	
 		system("pause");
 		system("cls");
 		//funzione correggiRecord
 		a=correggiRecord(file1,n);
 		if(a==-1)
-		printf("record non esistente",a);
+		printf("record non esistente");
 		system("pause");
 		system("cls");
 		//funzione numeroRecord
@@ -192,7 +192,7 @@ void stampaFile(char x[])
 		printf("%d\n",buffer.nascita.a);
 		printf("voti:\n");
 		for(int i=0;i<V;i++)
-		printf("%d\n",&buffer.voti[i]);
+		printf("%d\n", buffer.voti[i]);
 		printf("\n");
 	}
 }
@@ -214,7 +214,7 @@ int ricercaRecord(char x[], char y[])
 			printf("cognome:%s\n",buffer.cognome);
 			
 			printf("eta':%s\n",eta);
-			tot=0									//lo rende tot=0 perchè viene ripetuto l'operazione
+			tot=0;									//lo rende tot=0 perchè viene ripetuto l'operazione
 			for(int i=0;i<V;i++)
 			tot+=buffer.voti[i];					//somma tutti i voti
 			media=tot/V;							//calcola media
