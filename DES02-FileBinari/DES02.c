@@ -104,8 +104,7 @@ int main()
 	int n;															//variabile per ricevere i numeri da utente
 	int a;															//variabile per ricevere i numeri dalla funzione
 	FILE* pFile1;													//segno del file
-	char c[L];														//variabile per ricevere parole
-
+	char cognome[L];												
 	pFile1=fopen(file1,"rb+");										//apre file1
 	if(pFile1!=NULL)												//se il file si apre
 	{																//se è vero fa queste cose sotto
@@ -121,8 +120,8 @@ int main()
 		system("cls");
 		//funzione ricercaRecord
 		printf("inserisci il cognome dello studente\n");
-		scanf("%s",c);		
-		a=ricercaRecord(file1,c);
+		scanf("%s",cognome);		
+		a=ricercaRecord(file1,cognome);
 		system("pause");
 		system("cls");
 		//funzione stampaRecord
@@ -213,12 +212,12 @@ int ricercaRecord(char x[], char y[])
 		{
 			printf("cognome:%s\n",buffer.cognome);
 			
-			printf("eta':%s\n",eta);
+			printf("eta':%d\n",eta);
 			tot=0;									//lo rende tot=0 perchè viene ripetuto l'operazione
 			for(int i=0;i<V;i++)
 			tot+=buffer.voti[i];					//somma tutti i voti
 			media=tot/V;							//calcola media
-			printf("media dei voti:%s\n",media);
+			printf("media dei voti:%d\n",media);
 			n=1;
 		}
 		if(n==0)
@@ -246,7 +245,7 @@ int stampaRecord(char x[], int y)
 		printf("%d\n",buffer.nascita.a);
 		printf("voti:\n");
 		for(int i=0;i<V;i++)
-		printf("%d\n",&buffer.voti[i]);
+		printf("%d\n",buffer.voti[i]);
 		printf("\n");
 		return 0;									//rida 0 al int
 	}
