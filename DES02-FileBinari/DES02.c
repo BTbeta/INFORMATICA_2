@@ -10,6 +10,7 @@
 * @version 1.0 <1/12/2022>  Versione iniziale
 * @version 1.1 <1/12/2022>  <proseguimento del programma>
 * @version 1.2 <14/12/2022>  <comentare il programma>
+* @version 1.2 <14/12/2022>  <correzione al programma>
 */
 #include<string.h>		//è utilizzato per il funzionamento la funzione strcmp
 #include<stdio.h>		//è utilizzato per il funzionamento del file
