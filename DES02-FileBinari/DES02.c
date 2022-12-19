@@ -138,8 +138,6 @@ int main()
 	//funzione numeroRecord
 	a=numeroRecord(file1);
 	printf("nel file ci sono %d record\n",a);
-	system("pause");
-	system("cls");
 }
 
 void inserisciRecord(char x[],int y)
@@ -149,7 +147,7 @@ void inserisciRecord(char x[],int y)
 	int err;											//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;											//segno del file
 	pf=fopen(x,"ab+");									//apre x è file1
-	if(pFile1!=NULL)									//se il file si apre
+	if(pf!=NULL)									//se il file si apre
 	{												
 		for(int i=0;i<y;i++)							//insrisce i dati dei studenti per quanto lo chiede l'utente
 		{
@@ -167,7 +165,7 @@ void inserisciRecord(char x[],int y)
 			printf("\n");
 			err=fwrite(&buffer,sizeof(buffer),1,pf);	//il record vine memorizzato nel file 
 		}
-	err=fclose(pf);										//salva le modifiche e chude
+		err=fclose(pf);									//salva le modifiche e chude
 	}
 	else												//seè falso	fa visualizza re un errore		
 	{
@@ -200,7 +198,6 @@ void stampaFile(char x[])
 			}
 		}
 		err=fclose(pf);
-		}
 	}
 	else												//seè falso	fa visualizza re un errore		
 	{
@@ -222,7 +219,7 @@ int ricercaRecord(char x[], char y[])
 	pf=fopen(x,"rb");									//apre x è file1
 	if(pf!=NULL)
 	{
-		while(pf!=eof)									//il ciclo continua fino quando finisce il file
+		while(!feof(pf))									//il ciclo continua fino quando finisce il file
 		{
 			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
 			if(err!=0)
@@ -294,7 +291,7 @@ int correggiRecord(char x[], int y)
 		printf("anno:");
 		scanf("%d",&buffer.nascita.a);
 		for(int j=0;j<V;j++)
-		buffer.voti[j]=rand()%10+1;					//genera voti casuali da 1-10
+			buffer.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
 		printf("\n");
 		err=fwrite(&buffer,sizeof(buffer),1,pf);	//sovrascrive il record esistente con il record corretto
 		return 0;									//rida 0 al int
