@@ -165,7 +165,7 @@ void inserisciRecord(char x[],int y)
 			printf("\n");
 			err=fwrite(&buffer,sizeof(buffer),1,pf);	//il record vine memorizzato nel file 
 		}
-		err=fclose(pf);									//salva le modifiche e chude
+		err=fclose(pf);									//salva le modifiche e chude il file
 	}
 	else												//seè falso	fa visualizza re un errore		
 	{
@@ -197,7 +197,7 @@ void stampaFile(char x[])
 				printf("\n");
 			}
 		}
-		err=fclose(pf);
+		err=fclose(pf);									//chude il file
 	}
 	else												//seè falso	fa visualizza re un errore		
 	{
@@ -241,6 +241,7 @@ int ricercaRecord(char x[], char y[])
 					p++;								//continua ad aumentare il contatore fino quando n è diverso da 0
 				}
 			}
+			err=fclose(pf);								//chude il file
 		}
 	}
 	return p;
@@ -265,10 +266,11 @@ int stampaRecord(char x[], int y)
 		for(int i=0;i<V;i++)
 			printf("%d\t",buffer.voti[i]);
 		printf("\n");
+		err=fclose(pf);								//chude il file
 		return 0;									//rida 0 al int
 	}
 	else											//se è falso
-	return err;										//rida -1 al int
+		return err;									//rida -1 al int
 }
 
 int correggiRecord(char x[], int y)
@@ -294,10 +296,11 @@ int correggiRecord(char x[], int y)
 			buffer.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
 		printf("\n");
 		err=fwrite(&buffer,sizeof(buffer),1,pf);	//sovrascrive il record esistente con il record corretto
+		err=fclose(pf);									//chude il file
 		return 0;									//rida 0 al int
 	}
 	else											//se è falso
-	return err;										//rida -1 al int
+		return err;									//rida -1 al int
 }
 
 int numeroRecord(char x[])
@@ -311,5 +314,6 @@ int numeroRecord(char x[])
 	err=fseek(pf,0,2);								//mette il puntatore alla fine del file e err viene salvato il numero di bit
 	err=ftell(pf);									//restituisce un intero che è la posizione corrente del puntatore.
 	record=err/n;									//divido err con n per trovare quanti record sono
+	err=fclose(pf);									//chude il file
 	return record;									//rida record al int
 }
