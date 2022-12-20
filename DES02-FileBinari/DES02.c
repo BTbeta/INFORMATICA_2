@@ -11,6 +11,8 @@
 * @version 1.1 <1/12/2022>  <proseguimento del programma>
 * @version 1.2 <14/12/2022>  <comentare il programma>
 * @version 1.2 <14/12/2022>  <correzione al programma>
+* @version 1.2 <14/12/2022>  <correzione al programma>
+* @version 1.2 <14/12/2022>  <completamento>
 */
 #include<string.h>		//è utilizzato per il funzionamento la funzione strcmp
 #include<stdio.h>		//è utilizzato per il funzionamento del file
@@ -121,6 +123,14 @@ int main()
 	printf("inserisci il cognome dello studente\n");
 	scanf("%s",cognome);		
 	a=ricercaRecord(file1,cognome);
+	if(a==-1)
+	{
+		printf("non esiste uno studente conquesto cognome\n");
+	}	
+	else
+	{
+		printf("e' nella posizione(comincia da 0): %d\n",a);
+	}		
 	system("pause");
 	system("cls");
 	//funzione stampaRecord
@@ -128,16 +138,25 @@ int main()
 	scanf("%d",&n);	
 	a=stampaRecord(file1,n);
 	if(a==-1)
-	printf("record non esistente");	
+	printf("record non esistente\n");	
 	//funzione correggiRecord
 	a=correggiRecord(file1,n);
 	if(a==-1)
-	printf("record non esistente");
+	{
+		printf("record non esistente\n");
+	}
 	system("pause");
 	system("cls");
 	//funzione numeroRecord
 	a=numeroRecord(file1);
-	printf("nel file ci sono %d record\n",a);
+	if(a==0)
+	{
+		printf("non ci sono record\n");
+	}
+	else
+	{
+		printf("nel file ci sono %d record\n",a);
+	}
 }
 
 void inserisciRecord(char x[],int y)
@@ -161,7 +180,9 @@ void inserisciRecord(char x[],int y)
 			printf("anno:");
 			scanf("%d",&buffer.nascita.a);
 			for(int j=0;j<V;j++)
+			{
 				buffer.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
+			}
 			printf("\n");
 			err=fwrite(&buffer,sizeof(buffer),1,pf);	//il record vine memorizzato nel file 
 		}
@@ -193,13 +214,15 @@ void stampaFile(char x[])
 				printf("%d\n",buffer.nascita.a);
 				printf("voti:\n");
 				for(int i=0;i<V;i++)
+				{
 					printf("%d\t", buffer.voti[i]);
+				}
 				printf("\n");
 			}
 		}
 		err=fclose(pf);									//chude il file
 	}
-	else												//seè falso	fa visualizza re un errore		
+	else												//se è falso fa visualizza re un errore		
 	{
 		printf("\nil file non puo'essere aperto\n");
 	}
@@ -213,13 +236,14 @@ int ricercaRecord(char x[], char y[])
 	int anno=1900+time.tm_year;	*/	
 	int anno=2022;			
 	int n=0;											//è un segno per trovere il primo ceh trova
-	int p=0;											//posizione del primo che trova
+	int p=-1;											//posizione del primo che trova
 	int err;											//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;											//segno del file
 	pf=fopen(x,"rb");									//apre x è file1
 	if(pf!=NULL)
 	{
-		while(!feof(pf))									//il ciclo continua fino quando finisce il file
+		p++;											//aumenta il contatore
+		while(!feof(pf))								//il ciclo continua fino quando finisce il file
 		{
 			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
 			if(err!=0)
@@ -231,9 +255,11 @@ int ricercaRecord(char x[], char y[])
 					printf("eta':%d\n",eta);
 					tot=0;								//lo rende tot=0 perchè viene ripetuto l'operazione
 					for(int i=0;i<V;i++)
+					{
 						tot+=buffer.voti[i];			//somma tutti i voti
+					}
 					media=tot/V;						//calcola media
-					printf("media dei voti:%d\n",media);
+					printf("media dei voti:%d\n\n",media);
 					n=1;
 				}
 				if(n==0)
@@ -241,8 +267,14 @@ int ricercaRecord(char x[], char y[])
 					p++;								//continua ad aumentare il contatore fino quando n è diverso da 0
 				}
 			}
-			err=fclose(pf);								//chude il file
 		}
+		if(n==0)										//se nel ciclo non vine trovato
+			p=-1;										//il contatore diventa -1
+		err=fclose(pf);									//chude il file
+	}
+	else												//se è falso fa visualizza re un errore		
+	{
+		printf("\nil file non puo'essere aperto\n");
 	}
 	return p;
 }
@@ -254,7 +286,7 @@ int stampaRecord(char x[], int y)
 	FILE* pf;										//segno del file
 	pf=fopen(x,"rb");								//apre x è file1
 	err=fseek(pf,y*sizeof(buffer),0);				//posiziona il puntatore alla posizione inserita nel parametro
-	if(err!=-1)										//controlla se esiste il record
+	if(err==0)										//controlla se esiste il record
 	{												//se è vero
 		err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
 		printf("cognome:%s\n",buffer.cognome);
@@ -264,24 +296,26 @@ int stampaRecord(char x[], int y)
 		printf("%d\n",buffer.nascita.a);
 		printf("voti:\n");
 		for(int i=0;i<V;i++)
+		{
 			printf("%d\t",buffer.voti[i]);
+		}
 		printf("\n");
-		err=fclose(pf);								//chude il file
 		return 0;									//rida 0 al int
 	}
 	else											//se è falso
+	{
 		return err;									//rida -1 al int
+	}
 }
-
 int correggiRecord(char x[], int y)
 {
 	srand(time(NULL));								//funzionamento del rand
 	stud buffer;									//dichiarazione di un record
 	int err;										//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;										//segno del file
-	pf=fopen(x,"rb");								//apre x è file1
+	pf=fopen(x,"rb+");								//apre x è file1
 	err=fseek(pf,y*sizeof(buffer),0);				//posiziona il puntatore alla posizione inserita nel parametro
-	if(err!=-1)										//controlla se esiste il record
+	if(err==0)										//controlla se esiste il record
 	{
 		printf("inserisci cognome:");
 		scanf("%s", buffer.cognome);
@@ -293,14 +327,18 @@ int correggiRecord(char x[], int y)
 		printf("anno:");
 		scanf("%d",&buffer.nascita.a);
 		for(int j=0;j<V;j++)
+		{
 			buffer.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
+		}
 		printf("\n");
 		err=fwrite(&buffer,sizeof(buffer),1,pf);	//sovrascrive il record esistente con il record corretto
-		err=fclose(pf);									//chude il file
+		err=fclose(pf);								//chude il file
 		return 0;									//rida 0 al int
 	}
 	else											//se è falso
+	{
 		return err;									//rida -1 al int
+	}
 }
 
 int numeroRecord(char x[])
