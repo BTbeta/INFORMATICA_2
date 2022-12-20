@@ -10,9 +10,11 @@
 * @version 1.0 <1/12/2022>  Versione iniziale
 * @version 1.1 <1/12/2022>  <proseguimento del programma>
 * @version 1.2 <14/12/2022>  <comentare il programma>
-* @version 1.2 <14/12/2022>  <correzione al programma>
-* @version 1.2 <14/12/2022>  <correzione al programma>
-* @version 1.2 <14/12/2022>  <completamento>
+* @version 1.3 <14/12/2022>  <correzione al programma>
+* @version 1.4 <14/12/2022>  <correzione al programma>
+* @version 1.5 <14/12/2022>  <correzione al programma>
+* @version 1.6 <19/12/2022>  <correzione al programma>
+* @version 1.7 <20/12/2022>  <correzione al programma>
 */
 #include<string.h>		//è utilizzato per il funzionamento la funzione strcmp
 #include<stdio.h>		//è utilizzato per il funzionamento del file
@@ -296,19 +298,26 @@ int stampaRecord(char x[], int y)
 		if(err!=-1)										//controlla se esiste il record
 		{												//se è vero
 			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
-			printf("cognome:%s\n",buffer.cognome);
-			printf("data di nascita:");
-			printf("%d/",buffer.nascita.g);
-			printf("%d/",buffer.nascita.m);
-			printf("%d\n",buffer.nascita.a);
-			printf("voti:\n");
-			for(int i=0;i<V;i++)
+			if(err!=0)
 			{
-				printf("%d\t",buffer.voti[i]);
+				printf("cognome:%s\n",buffer.cognome);
+				printf("data di nascita:");
+				printf("%d/",buffer.nascita.g);
+				printf("%d/",buffer.nascita.m);
+				printf("%d\n",buffer.nascita.a);
+				printf("voti:\n");
+				for(int i=0;i<V;i++)
+				{
+					printf("%d\t",buffer.voti[i]);
+				}
+				printf("\n");
+				return 0;
 			}
-			printf("\n");
-			return 0;									//rida 0 al int
-		}
+			else
+			{
+				return -1;
+			}
+		}                                 
 		else											//se è falso
 		{
 			return err;									//rida -1 al int
@@ -332,25 +341,33 @@ int correggiRecord(char x[], int y)
 		err=fseek(pf,y*sizeof(buffer),0);				//posiziona il puntatore alla posizione inserita nel parametro
 		if(err!=-1)										//controlla se esiste il record
 		{
-			printf("inserisci cognome:");
-			scanf("%s", buffer.cognome);
-			printf("inserisci data di nascita:\n");
-			printf("giorno:");
-			scanf("%d",&buffer.nascita.g);
-			printf("mese(numero):");
-			scanf("%d",&buffer.nascita.m);
-			printf("anno:");
-			scanf("%d",&buffer.nascita.a);
-			for(int j=0;j<V;j++)
+			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
+			if(err!=0)
 			{
-				buffer.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
+				printf("inserisci cognome:");
+				scanf("%s", buffer.cognome);
+				printf("inserisci data di nascita:\n");
+				printf("giorno:");
+				scanf("%d",&buffer.nascita.g);
+				printf("mese(numero):");
+				scanf("%d",&buffer.nascita.m);
+				printf("anno:");
+				scanf("%d",&buffer.nascita.a);
+				for(int j=0;j<V;j++)
+				{
+					buffer.voti[j]=rand()%10+1;			//genera voti casuali da 1-10
+				}                              
+				printf("\n");
+				err=fwrite(&buffer,sizeof(buffer),1,pf);//sovrascrive il record esistente con il record corretto
+				err=fclose(pf);							//chude il file
+				return 0;
 			}
-			printf("\n");
-			err=fwrite(&buffer,sizeof(buffer),1,pf);	//sovrascrive il record esistente con il record corretto
-			err=fclose(pf);								//chude il file
-			return 0;									//rida 0 al int
-		}
-		else											//se è falso
+			else
+			{
+				return -1;
+			}	   
+		}                                                 
+		else											//se è falso}
 		{
 			return err;									//rida -1 al int
 		}
