@@ -286,11 +286,11 @@ int ricercaRecord(char x[], char y[])
 
 int stampaRecord(char x[], int y)
 {
-	stud buffer;									//dichiarazione di un record
-	int err;										//interi utilizzato per funzionare di funzioni di file
-	FILE* pf;										//segno del file
-	pf=fopen(x,"rb");								//apre x è file1
-	if(pf!=NULL)									//se il file si apre
+	stud buffer;										//dichiarazione di un record
+	int err;											//interi utilizzato per funzionare di funzioni di file
+	FILE* pf;											//segno del file
+	pf=fopen(x,"rb");									//apre x è file1
+	if(pf!=NULL)										//se il file si apre
 	{
 		err=fseek(pf,y*sizeof(buffer),0);				//posiziona il puntatore alla posizione inserita nel parametro
 		if(err!=-1)										//controlla se esiste il record
@@ -322,12 +322,12 @@ int stampaRecord(char x[], int y)
 }
 int correggiRecord(char x[], int y)
 {
-	srand(time(NULL));								//funzionamento del rand
-	stud buffer;									//dichiarazione di un record
-	int err;										//interi utilizzato per funzionare di funzioni di file
-	FILE* pf;										//segno del file
-	pf=fopen(x,"rb+");								//apre x è file1
-	if(pf!=NULL)									//se il file si apre
+	srand(time(NULL));									//funzionamento del rand
+	stud buffer;										//dichiarazione di un record
+	int err;											//interi utilizzato per funzionare di funzioni di file
+	FILE* pf;											//segno del file
+	pf=fopen(x,"rb+");									//apre x è file1
+	if(pf!=NULL)										//se il file si apre
 	{
 		err=fseek(pf,y*sizeof(buffer),0);				//posiziona il puntatore alla posizione inserita nel parametro
 		if(err!=-1)										//controlla se esiste il record
@@ -364,12 +364,12 @@ int correggiRecord(char x[], int y)
 
 int numeroRecord(char x[])
 {
-	stud buffer;									//dichiarazione di un record
-	int err;										//interi utilizzato per funzionare di funzioni di file
-	int n=sizeof(buffer);							//la grandezza del record
-	int record;										//quantità di record ci sono
-	FILE* pf;										//segno del file
-	if(pf!=NULL)									//se il file si apre
+	stud buffer;										//dichiarazione di un record
+	int err;											//interi utilizzato per funzionare di funzioni di file
+	int n=sizeof(buffer);								//la grandezza del record
+	int record;											//quantità di record ci sono
+	FILE* pf;											//segno del file
+	if(pf!=NULL)										//se il file si apre
 	{
 		pf=fopen(x,"rb");								//apre x è file1
 		err=fseek(pf,0,2);								//mette il puntatore alla fine del file e err viene salvato il numero di bit
