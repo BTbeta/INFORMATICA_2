@@ -369,9 +369,9 @@ int numeroRecord(char x[])
 	int n=sizeof(buffer);								//la grandezza del record
 	int record;											//quantità di record ci sono
 	FILE* pf;											//segno del file
+	pf=fopen(x,"rb");									//apre x è file1
 	if(pf!=NULL)										//se il file si apre
 	{
-		pf=fopen(x,"rb");								//apre x è file1
 		err=fseek(pf,0,2);								//mette il puntatore alla fine del file e err viene salvato il numero di bit
 		err=ftell(pf);									//restituisce un intero che è la posizione corrente del puntatore.
 		record=err/n;									//divido err con n per trovare quanti record sono
