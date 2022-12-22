@@ -15,6 +15,7 @@
 * @version 1.5 <14/12/2022>  <correzione al programma>
 * @version 1.6 <19/12/2022>  <correzione al programma>
 * @version 1.7 <20/12/2022>  <correzione al programma>
+* @version 1.8 <20/12/2022>  <correzione al programma e due nuvi funzioni>
 */
 #include<string.h>		//è utilizzato per il funzionamento la funzione strcmp
 #include<stdio.h>		//è utilizzato per il funzionamento del file
@@ -39,10 +40,31 @@ struct stud				//creazione di un record
 }typedef stud;			//nome di defoult stud
 
 /** ****************************************************************************************
+* @brief <carica record>
+* @param  <una struct di stud>
+* @retval <una struct di stud>
+* @see <srand serve per funzionare rend e rand serve per generare numeri casuali si trovano stdlib.h>
+*
+* @author <zeng oscar>
+* @version 1.0 <1/12/2022> <nuovo algoritmo>
+*/
+stud inserrimentoRecord(stud);
+
+/** ****************************************************************************************
+* @brief <stampa record>
+* @param  <una struct di stud>
+* @retval <nessuna>
+*
+* @author <zeng oscar>
+* @version 1.0 <1/12/2022> <nuovo algoritmo>
+*/
+void vissualizzarecord(stud);
+
+/** ****************************************************************************************
 * @brief <inserimento dei informazioni in un file di reord>
 * @param  <una stringa e una intero(char fileName[], int numRecord)>
 * @retval <nessuna>
-* @see <fwrite serve ad agiungere o sovrascivere le informazioni nel file e sizeof calcola la grandezza del variabile, sono nella libreia stdio.h,srand serve per funzionare rend e rand serve per generare numeri casuali si trovano stdlib.h>
+* @see <fwrite serve ad agiungere o sovrascivere le informazioni nel file e sizeof calcola la grandezza del variabile, sono nella libreia stdio.h>
 *
 * @author <zeng oscar>
 * @version 1.0 <1/12/2022> <nuovo algoritmo>
@@ -166,6 +188,39 @@ int main()
 	}
 }
 
+stud inserrimentoRecord(stud x)
+{
+	printf("inserisci cognome:");
+	scanf("%s",x.cognome);
+	printf("inserisci data di nascita:\n");
+	printf("giorno:");
+	scanf("%d",&x.nascita.g);
+	printf("mese(numero):");
+	scanf("%d",&x.nascita.m);
+	printf("anno:");
+	scanf("%d",&x.nascita.a);
+	for(int j=0;j<V;j++)
+	{
+		x.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
+	}
+	printf("\n");
+	return x;
+}
+
+void vissualizzarecord(stud x)
+{
+	printf("cognome:%s\n",x.cognome);
+	printf("data di nascita:");
+	printf("%d/",x.nascita.g);
+	printf("%d/",x.nascita.m);
+	printf("%d\n",x.nascita.a);
+	printf("voti:\n");
+	for(int i=0;i<V;i++)
+	{
+		printf("%d\t",x.voti[i]);
+	}
+	printf("\n");
+}
 void inserisciRecord(char x[],int y)
 {
 	srand(time(NULL));									//funzionamento del rand
@@ -177,20 +232,7 @@ void inserisciRecord(char x[],int y)
 	{												
 		for(int i=0;i<y;i++)							//insrisce i dati dei studenti per quanto lo chiede l'utente
 		{
-			printf("inserisci cognome:");
-			scanf("%s", buffer.cognome);
-			printf("inserisci data di nascita:\n");
-			printf("giorno:");
-			scanf("%d",&buffer.nascita.g);
-			printf("mese(numero):");
-			scanf("%d",&buffer.nascita.m);
-			printf("anno:");
-			scanf("%d",&buffer.nascita.a);
-			for(int j=0;j<V;j++)
-			{
-				buffer.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
-			}
-			printf("\n");
+			buffer=inserrimentoRecord(buffer);
 			err=fwrite(&buffer,sizeof(buffer),1,pf);	//il record vine memorizzato nel file 
 		}
 		err=fclose(pf);									//salva le modifiche e chude il file
@@ -214,17 +256,7 @@ void stampaFile(char x[])
 			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
 			if(err!=0)
 			{
-				printf("cognome:%s\n",buffer.cognome);
-				printf("data di nascita:");
-				printf("%d/",buffer.nascita.g);
-				printf("%d/",buffer.nascita.m);
-				printf("%d\n",buffer.nascita.a);
-				printf("voti:\n");
-				for(int i=0;i<V;i++)
-				{
-					printf("%d\t", buffer.voti[i]);
-				}
-				printf("\n");
+				vissualizzarecord(buffer);
 			}
 		}
 		err=fclose(pf);									//chude il file
@@ -300,17 +332,7 @@ int stampaRecord(char x[], int y)
 			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
 			if(err!=0)
 			{
-				printf("cognome:%s\n",buffer.cognome);
-				printf("data di nascita:");
-				printf("%d/",buffer.nascita.g);
-				printf("%d/",buffer.nascita.m);
-				printf("%d\n",buffer.nascita.a);
-				printf("voti:\n");
-				for(int i=0;i<V;i++)
-				{
-					printf("%d\t",buffer.voti[i]);
-				}
-				printf("\n");
+				vissualizzarecord(buffer);
 				return 0;
 			}
 			else
@@ -344,20 +366,9 @@ int correggiRecord(char x[], int y)
 			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
 			if(err!=0)
 			{
-				printf("inserisci cognome:");
-				scanf("%s", buffer.cognome);
-				printf("inserisci data di nascita:\n");
-				printf("giorno:");
-				scanf("%d",&buffer.nascita.g);
-				printf("mese(numero):");
-				scanf("%d",&buffer.nascita.m);
-				printf("anno:");
-				scanf("%d",&buffer.nascita.a);
-				for(int j=0;j<V;j++)
-				{
-					buffer.voti[j]=rand()%10+1;			//genera voti casuali da 1-10
-				}                              
+				buffer=inserrimentoRecord(buffer);                     
 				printf("\n");
+				err=fseek(pf,y*sizeof(buffer),0);		//riposiziona il puntatore alla posiione di prima
 				err=fwrite(&buffer,sizeof(buffer),1,pf);//sovrascrive il record esistente con il record corretto
 				err=fclose(pf);							//chude il file
 				return 0;
