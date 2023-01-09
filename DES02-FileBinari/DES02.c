@@ -17,15 +17,15 @@
 * @version 1.7 <20/12/2022>  <correzione al programma>
 * @version 1.8 <20/12/2022>  <correzione al programma e due nuvi funzioni>
 */
-#include<string.h>		//è utilizzato per il funzionamento la funzione strcmp
+#include<string.h>		//strcmp
 #include<stdio.h>		//è utilizzato per il funzionamento del file
 #include<stdlib.h>		//è utilizzato per il funzionamento del system e rand
 #include<time.h>		//è utilizzato per estrare il tempo e funzionamento del srand
 
-#define V 3				//quantità di voti
-#define L 10			//quantità di carateri
+#define NUM_VOTI 3		//quantità di voti
+#define DIM_COGNOME 10	//quantità di caratteri
 
-struct data				//creazione di un record
+struct data				
 {
 	int g;				//giorno
 	int m;				//mese
@@ -34,13 +34,15 @@ struct data				//creazione di un record
 
 struct stud				//creazione di un record
 {
-	char cognome[L];
+	char cognome[DIM_COGNOME];
 	data nascita;
-	int voti[V];
+	int voti[NUM_VOTI];
 }typedef stud;			//nome di defoult stud
 
+int menu(void);
+
 /** ****************************************************************************************
-* @brief <carica record>
+* @brief carica record
 * @param  <una struct di stud>
 * @retval <una struct di stud>
 * @see <srand serve per funzionare rend e rand serve per generare numeri casuali si trovano stdlib.h>
@@ -127,26 +129,32 @@ int numeroRecord(char []);
 
 int main()
 {
-	char file1[]={"nome.dat"};										//nome file
+	char nome_file[]={"nome.dat"};										//nome file
 	int err1;														//interi utilizzato per funzionare di funzioni di file
 	int n;															//variabile per ricevere i numeri da utente
 	int a;															//variabile per ricevere i numeri dalla funzione
 	FILE* pFile1;													//segno del file
-	char cognome[L];																												//se è vero fa queste cose sotto
-	//funzione inserisciRecord
-	printf("quanti studenti da inserire\n");
-	scanf("%d",&n);	
-	inserisciRecord(file1,n);
-	system("pause");												//aspetta fino quando non schiacia qualcosa
-	system("cls");													//cancella quello che c'era scritto
-	//funzione stampaFile
-	stampaFile(file1);
-	system("pause");
-	system("cls");
+	char cognome[DIM_COGNOME];										//se è vero fa queste cose sotto
+	a=menu;
+	switch(a)
+	{
+		case 1:
+			printf("quanti studenti da inserire\n");
+			scanf("%d",&n);	
+			inserisciRecord(nome_file,n);
+			system("pause");												//aspetta fino quando non schiacia qualcosa
+			system("cls");													//cancella quello che c'era scritto
+		break;
+		case 2:
+			stampaFile(nome_file);
+			system("pause");
+			system("cls");
+		break;
+	}
 	//funzione ricercaRecord
 	printf("inserisci il cognome dello studente\n");
 	scanf("%s",cognome);		
-	a=ricercaRecord(file1,cognome);
+	a=ricercaRecord(nome_file,cognome);
 	if(a==-1)
 	{
 		printf("non esiste uno studente conquesto cognome\n");
@@ -160,13 +168,13 @@ int main()
 	//funzione stampaRecord
 	printf("inserisci la posizione da guardare e modificare(comincia da 0)\n");
 	scanf("%d",&n);	
-	a=stampaRecord(file1,n);
+	a=stampaRecord(nome_file,n);
 	if(a==-1)
 	{
 		printf("record non esistente\n");	
 	}
 	//funzione correggiRecord
-	a=correggiRecord(file1,n);
+	a=correggiRecord(nome_file,n);
 	if(a==-1)
 	{
 		printf("record non esistente\n");
@@ -174,7 +182,7 @@ int main()
 	system("pause");
 	system("cls");
 	//funzione numeroRecord
-	a=numeroRecord(file1);
+	a=numeroRecord(nome_file);
 	if(a!=-1)
 	{
 		if(a==0)
@@ -188,6 +196,20 @@ int main()
 	}
 }
 
+int menu(void)
+{
+	int a;
+	printf("scegli un opzione:\n");
+	printf("1-inserisci record\n");
+	printf("2-visualizza record\n");
+	printf("3-ricerca per cognome\n");
+	printf("4-stampa record\n");
+	printf("5-corregi record\n");
+	printf("6-numero record\n");
+	printf("0-chiudere programma\n");
+	scanf("%d",&a);
+	return a;
+}
 stud inserrimentoRecord(stud x)
 {
 	printf("inserisci cognome:");
@@ -199,7 +221,7 @@ stud inserrimentoRecord(stud x)
 	scanf("%d",&x.nascita.m);
 	printf("anno:");
 	scanf("%d",&x.nascita.a);
-	for(int j=0;j<V;j++)
+	for(int j=0;j<NUM_VOTI;j++)
 	{
 		x.voti[j]=rand()%10+1;				//genera voti casuali da 1-10
 	}
@@ -215,7 +237,7 @@ void vissualizzarecord(stud x)
 	printf("%d/",x.nascita.m);
 	printf("%d\n",x.nascita.a);
 	printf("voti:\n");
-	for(int i=0;i<V;i++)
+	for(int i=0;i<NUM_VOTI;i++)
 	{
 		printf("%d\t",x.voti[i]);
 	}
@@ -227,7 +249,7 @@ void inserisciRecord(char x[],int y)
 	stud buffer;										//dichiarazione di un record
 	int err;											//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;											//segno del file
-	pf=fopen(x,"ab+");									//apre x è file1
+	pf=fopen(x,"ab+");									//apre x è nome_file
 	if(pf!=NULL)										//se il file si apre
 	{												
 		for(int i=0;i<y;i++)							//insrisce i dati dei studenti per quanto lo chiede l'utente
@@ -248,7 +270,7 @@ void stampaFile(char x[])
 	stud buffer;										//dichiarazione di un record
 	int err;											//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;											//segno del file
-	pf=fopen(x,"rb");									//apre x è file1
+	pf=fopen(x,"rb");									//apre x è nome_file
 	if(pf!=NULL)										//se il file si apre
 	{
 		while(!feof(pf))								//il ciclo continua fino quando finisce il file
@@ -278,7 +300,7 @@ int ricercaRecord(char x[], char y[])
 	int p=-1;											//posizione del primo che trova
 	int err;											//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;											//segno del file
-	pf=fopen(x,"rb");									//apre x è file1
+	pf=fopen(x,"rb");									//apre x è nome_file
 	if(pf!=NULL)										//se il file si apre
 	{
 		p++;											//aumenta il contatore
@@ -293,11 +315,11 @@ int ricercaRecord(char x[], char y[])
 					eta=anno-buffer.nascita.a;
 					printf("eta':%d\n",eta);
 					tot=0;								//lo rende tot=0 perchè viene ripetuto l'operazione
-					for(int i=0;i<V;i++)
+					for(int i=0;i<NUM_VOTI;i++)
 					{
 						tot+=buffer.voti[i];			//somma tutti i voti
 					}
-					media=tot/V;						//calcola media
+					media=tot/NUM_VOTI;						//calcola media
 					printf("media dei voti:%d\n\n",media);
 					n=1;
 				}
@@ -323,7 +345,7 @@ int stampaRecord(char x[], int y)
 	stud buffer;										//dichiarazione di un record
 	int err;											//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;											//segno del file
-	pf=fopen(x,"rb");									//apre x è file1
+	pf=fopen(x,"rb");									//apre x è nome_file
 	if(pf!=NULL)										//se il file si apre
 	{
 		err=fseek(pf,y*sizeof(buffer),0);				//posiziona il puntatore alla posizione inserita nel parametro
@@ -357,7 +379,7 @@ int correggiRecord(char x[], int y)
 	stud buffer;										//dichiarazione di un record
 	int err;											//interi utilizzato per funzionare di funzioni di file
 	FILE* pf;											//segno del file
-	pf=fopen(x,"rb+");									//apre x è file1
+	pf=fopen(x,"rb+");									//apre x è nome_file
 	if(pf!=NULL)										//se il file si apre
 	{
 		err=fseek(pf,y*sizeof(buffer),0);				//posiziona il puntatore alla posizione inserita nel parametro
@@ -397,7 +419,7 @@ int numeroRecord(char x[])
 	int n=sizeof(buffer);								//la grandezza del record
 	int record;											//quantità di record ci sono
 	FILE* pf;											//segno del file
-	pf=fopen(x,"rb");									//apre x è file1
+	pf=fopen(x,"rb");									//apre x è nome_file
 	if(pf!=NULL)										//se il file si apre
 	{
 		err=fseek(pf,0,2);								//mette il puntatore alla fine del file e err viene salvato il numero di bit
