@@ -127,78 +127,102 @@ int correggiRecord(char [], int);
 */
 int numeroRecord(char []);
 
+void TrovaVotoAlto(char x[]);
+
 int main()
 {
 	char nome_file[]={"nome.dat"};										//nome file
 	int err1;														//interi utilizzato per funzionare di funzioni di file
 	int n;															//variabile per ricevere i numeri da utente
 	int a;															//variabile per ricevere i numeri dalla funzione
+	int b;
 	FILE* pFile1;													//segno del file
 	char cognome[DIM_COGNOME];										//se è vero fa queste cose sotto
-	a=menu;
-	switch(a)
+	do
 	{
-		case 1:
-			printf("quanti studenti da inserire\n");
-			scanf("%d",&n);	
-			inserisciRecord(nome_file,n);
-			system("pause");												//aspetta fino quando non schiacia qualcosa
-			system("cls");													//cancella quello che c'era scritto
-		break;
-		case 2:
-			stampaFile(nome_file);
-			system("pause");
-			system("cls");
-		break;
-	}
-	//funzione ricercaRecord
-	printf("inserisci il cognome dello studente\n");
-	scanf("%s",cognome);		
-	a=ricercaRecord(nome_file,cognome);
-	if(a==-1)
-	{
-		printf("non esiste uno studente conquesto cognome\n");
-	}	
-	else
-	{
-		printf("e' nella posizione(comincia da 0): %d\n",a);
-	}		
-	system("pause");
-	system("cls");
-	//funzione stampaRecord
-	printf("inserisci la posizione da guardare e modificare(comincia da 0)\n");
-	scanf("%d",&n);	
-	a=stampaRecord(nome_file,n);
-	if(a==-1)
-	{
-		printf("record non esistente\n");	
-	}
-	//funzione correggiRecord
-	a=correggiRecord(nome_file,n);
-	if(a==-1)
-	{
-		printf("record non esistente\n");
-	}
-	system("pause");
-	system("cls");
-	//funzione numeroRecord
-	a=numeroRecord(nome_file);
-	if(a!=-1)
-	{
-		if(a==0)
+		b=menu();
+		switch(b)
 		{
-			printf("non ci sono record\n");
-		}
-		else
-		{
-			printf("nel file ci sono %d record\n",a);
+			case 1:
+				printf("quanti studenti da inserire\n");
+				scanf("%d",&n);	
+				inserisciRecord(nome_file,n);
+				system("pause");												//aspetta fino quando non schiacia qualcosa
+				system("cls");													//cancella quello che c'era scritto
+			break;
+			case 2:
+				stampaFile(nome_file);
+				system("pause");
+				system("cls");
+			break;
+			case 3:
+				printf("inserisci il cognome dello studente\n");
+				scanf("%s",cognome);		
+				a=ricercaRecord(nome_file,cognome);
+				if(a==-1)
+				{
+					printf("non esiste uno studente conquesto cognome\n");
+				}	
+				else
+				{
+					printf("e' nella posizione(comincia da 0): %d\n",a);
+				}		
+				system("pause");
+				system("cls");
+			break;
+			case 4:
+				printf("inserisci la posizione da guardare e modificare(comincia da 0)\n");
+				scanf("%d",&n);	
+				a=stampaRecord(nome_file,n);
+				if(a==-1)
+				{
+					printf("record non esistente\n");	
+				}
+				system("pause");
+				system("cls");
+			break;
+			case 5:
+				a=correggiRecord(nome_file,n);
+				if(a==-1)
+				{
+					printf("record non esistente\n");
+				}
+				system("pause");
+				system("cls");
+			break;
+			case 6:
+				a=numeroRecord(nome_file);
+				if(a!=-1)
+				{
+					if(a==0)
+					{
+						printf("non ci sono record\n");
+					}
+					else
+					{
+						printf("nel file ci sono %d record\n",a);
+					}
+				}
+			break;
+			case 7:
+				TrovaVotoAlto(nome_file);
+				system("pause");
+				system("cls");
+			break;
+			case 0:
+		    	printf("hai deciso di uscire ciao\n");
+		   	break;
+		   	default:
+	     		printf("scelta non valida\n");
+		   	break;
 		}
 	}
+	while(b!=0);
 }
 
-int menu(void)
+int menu()
 {
-	int a;
+	int b;
 	printf("scegli un opzione:\n");
 	printf("1-inserisci record\n");
 	printf("2-visualizza record\n");
@@ -206,9 +230,11 @@ int menu(void)
 	printf("4-stampa record\n");
 	printf("5-corregi record\n");
 	printf("6-numero record\n");
+	printf("7-voto piu'alto\n");
 	printf("0-chiudere programma\n");
-	scanf("%d",&a);
-	return a;
+	printf("\ninserisci:");
+	scanf("%d",&b);
+	return b;
 }
 stud inserrimentoRecord(stud x)
 {
@@ -311,6 +337,7 @@ int ricercaRecord(char x[], char y[])
 			{
 				if(strcmp(buffer.cognome,y)==0)			//controlla se è lo stesso cognome
 				{
+					vissualizzarecord(buffer);
 					printf("cognome:%s\n",buffer.cognome);
 					eta=anno-buffer.nascita.a;
 					printf("eta':%d\n",eta);
@@ -432,5 +459,47 @@ int numeroRecord(char x[])
 	{
 		printf("\nil file non puo'essere aperto\n");
 		return -1;
+	}
+}
+void TrovaVotoAlto(char x[])
+{
+	stud buffer;										//dichiarazione di un record
+	int v=0,r,p;
+	int err;											//interi utilizzato per funzionare di funzioni di file
+	FILE* pf;											//segno del file
+	pf=fopen(x,"rb");									//apre x è nome_file
+	if(pf!=NULL)										//se il file si apre
+	{
+		while(!feof(pf))								//il ciclo continua fino quando finisce il file
+		{							
+			err=ftell(pf);
+			err=fread(&buffer,sizeof(buffer),1,pf);		//tira fuori il record dal file e messo nel record del programma
+			if(err!=0)
+			{
+				for(int i=0;i<NUM_VOTI-1;i++)
+				{
+					if(v<buffer.voti[i])
+					{
+						v=buffer.voti[i];
+						r=p;
+					}
+				}
+			}
+			else
+			{
+				printf("non ci sono record\n");
+			}
+		}
+		if(err!=0)
+		{
+			err=fseek(pf,r,0);									//posiziona il puntatore alla posizione inserita nel parametro
+			err=fread(&buffer,sizeof(buffer),1,pf);				//tira fuori il record dal file e messo nel record del programma
+			printf("lo studente con il voto piu' alto e'%s\n",buffer.cognome);
+			err=fclose(pf);										//chude il file
+		}
+	}
+	else												//se è falso fa visualizzare un errore		
+	{
+		printf("\nil file non puo'essere aperto\n");
 	}
 }
