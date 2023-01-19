@@ -1,5 +1,5 @@
 /** ****************************************************************************************
-* \mainpage DES02.c
+* \mainpage frazione.c++
 *
 * @brief prova funzioni di file di record
 * <specifiche del progetto>
@@ -7,7 +7,7 @@
 * 
 * @author Zeng oscar hao
 * @date 12/1/2022
-* @version 1.0 <1/12/2022>  Versione iniziale
+* @version 1.0 <19/1/2022>  Versione iniziale
 */
 
 #include<iostream>
