@@ -19,13 +19,13 @@
 	$Password=$_POST["Password"];
 	
 	if (preg_match("/^[a-zA-Z ]$/", $Nome)) {
-	echo "Nome:$Nome";
+	echo "Nome:"trim($Nome);
 	} else {
 	  echo "$Nome non si può mettere numeri e carateri speciali";
 	}
 	
 	if (preg_match("/^[a-zA-Z' ]$/", $Cognome)) {
-	echo "Cognome:$Cognome";
+	echo "Cognome:"trim($Cognome);
 	} else {
 	  echo "$Cognome non si può mettere numeri e carateri speciali ecceto'";
 	}
@@ -35,8 +35,8 @@
 	  echo "$Codice_fiscale non è valido";
 	}
 	
-	if (preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $email)) {
-	echo "Email:$email";
+	if (filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+	echo "Email:$Email";
 	} else {
 	  echo "$email non è valido";
 	}
@@ -48,7 +48,7 @@
 	}
 
 	if (preg_match("/^[a-zA-Z' ]$/", $via_piazza)) {
-	echo "Via/Piazza:$via_piazza";
+	echo "Via/Piazza:"trim($via_piazza);
 	} else {
 	  echo "$via_piazza non si può mettere carateri speciali e numeri";
 	}
@@ -60,18 +60,18 @@
 	}
 	
 	if (preg_match("/^[a-zA-Z' ]$/", $Comune)&&) {
-	echo "Comune:$Comune";
+	echo "Comune:"trim($Comune);
 	} else {
 	  echo "$Comune è sbagliato";
 	}
 	
 	if (preg_match("/^[a-zA-Z' ]$/", $Provincia)&&) {
-	echo "Provincia:$Provincia";
+	echo "Provincia:"trim($Provincia);
 	} else {
 	  echo "$Provincia è sbagliato";
 	}
 	
-	if (preg_match("/^[a-zA-Z0-9_]$/", $Nickname)&&) {
+	if (preg_match("/^[a-zA-Z0-9_]$/", $Nickname)&&$Nickname!=$Nome) {
 	echo "Nickname:$Nickname";
 	} else {
 	  echo "$Nickname non si può mettere carateri speciali e numeri";
