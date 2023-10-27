@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>TEOREMA DI PITAGORA"Zeng_Oscar_Hao</title>
+</head>
+<body>
+	<h1 align="center">TEOREMA DI PITAGORA</h1>
+	<?php
+		echo'<table border="1" align="center">';
+		for($i=1;$i<=10;$i++) {
+			echo"<tr>";
+			for($j=1;$j<=10;$j++) {
+				$a=$i*$j;
+				echo"<td>$a</td>";
+			}
+			echo"</tr>";
+		}
+	echo"</table>";
+	?>
+</body>
+</html>
