@@ -6,43 +6,47 @@
 	<h4>Inserimento dati</h4>
 	<form name="frmlogin" method="post" action="verifica.php">
 		<label for="nome">Nome:</label> <br>
-		<input type="text" id="nome" name="Nome" pattern="[a-zA-Z ]" required> <br>
+		<input type="text" id="nome" name="Nome" pattern="[a-zA-Z ]*" required> <br>
 		
 		<label for="Cog">Cognome:</label> <br>
-		<input type="text" id="Cog" name="Cognome" pattern="[a-zA-Z' ]" required> <br>
+		<input type="text" id="Cog" name="Cognome" pattern="[a-zA-Z' ]*" required> <br>
 		
 		<label for="Data">Data di nascita:</label> <br>
 		<input type="date" id="Data" name="Data" required> <br>
 		
 		<label for="CF">Codice fiscale:</label> <br>
-		<input type="text" id="CF" name="Codice fiscale" pattern="[a-zA-Z0-9]" maxlength="16"> <br>
+		<input type="text" id="CF" name="Codice fiscale" pattern="[a-zA-Z0-9]*" maxlength="16"> <br>
 		
 		<label for="mail">Email:</label> <br>
 		<input type="email" id="mail" name="Email" required> <br>
 		
 		<label for="Tel">Cellulare:</label> <br>
-		<input type="tel" id="Tel" name="Numero_di_telefono" maxlength="12" autocomplete="39" pattern="[0-9]" required><br>
+		<input type="tel" id="Tel" name="Numero_di_telefono" maxlength="12" autocomplete="39" pattern="[0-9]*" required><br>
 		<small>Format: 393279783738</small><br><br>
 		
 		<label>Indirizzo:</label><br>
 		
 		<label for="VP">via/piazza</label> <br>
-		<input type="text" id="VP" name="via/piazza"> <br>
+		<input type="text" id="VP" name="via/piazza" pattern="[a-zA-Z' ]*"> <br>
 		
 		<label for="Cap">Cap</label> <br>
-		<input type="number" id="Cap" name="Cap" maxlength="5" pattern="[0-9]"> <br>
+		<input type="number" id="Cap" name="Cap" maxlength="5" pattern="[0-9]*"> <br>
 		
 		<label for="Com">Comune</label> <br>
-		<input type="text" id="Com" name="Comune"> <br>
+		<input type="text" id="Com" name="Comune" pattern="[a-zA-Z' ]*"> <br>
 		
 		<label for="Prov">Provincia</label> <br>
-		<input type="text" id="Prov" name="Provincia" required> <br><br>
+		<input type="text" id="Prov" name="Provincia" pattern="[a-zA-Z' ]*" required> <br><br>
 		
 		<label for="NN">Nickname:</label> <br>
-		<input type="text" id="NN" name="Nickname" pattern="[a-zA-Z ]" required> <br>
+		<input type="text" id="NN" name="Nickname" required> <br>
 		
 		<label for="Pass">Password:</label> <br>
-		<input type="Password" id="Pass" name="Password" minlength="8" required> <br><br>
+		<input type="Password" id="Pass" name="Password" pattern="([a-z]+[A-Z]+[0-9]+[ -/:-@[-'{-}]+){8,}" minlength="8" required> <br>
+		<small>*deve almeno un maiuscolo</small><br>
+		<small>*deve almeno un minuscolo</small><br>
+		<small>*deve almeno un numero</small><br>
+		<small>*deve almeno un caratere speciale</small><br><br>
 		
 		<input type="submit" name="submit">
 	</form>
