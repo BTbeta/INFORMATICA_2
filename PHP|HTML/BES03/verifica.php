@@ -67,7 +67,7 @@
 	  echo "<br>";
 	}
 	
-	if (preg_match("/^[0-9]{5}*$/", $Cap)) {
+	if (preg_match("/^[0-9]*$/", $Cap)) {
 		echo "Cap:$Cap<br>";
 	} else {
 	  echo "<font color='red'>$Cap è sbagliato</font>";
