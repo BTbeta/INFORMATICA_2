@@ -1,7 +1,7 @@
 <?php
 		session_start();
 		if (!isset($_SESSION['user'])) {
-			$url = 'login.php?errmsg=Fare prima il login&from=';
+			$url = 'login.php?errmsg=Fare prima il login';
 			header("Location: $url");
 			exit();
 		}
