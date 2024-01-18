@@ -25,3 +25,24 @@ CREATE TABLE Corsi (
 	FOREIGN KEY (ID_Studente) REFERENCES Studenti(ID_Studente),
     FOREIGN KEY (ID_Insegnante) REFERENCES Insegnanti(ID_Insegnante)
 );
+
+-- Inserimento dati nella tabella Studenti
+INSERT INTO Studenti (ID_Studente, Nome, Cognome, DataNascita)
+VALUES
+    (1, 'Mario', 'Rossi', '1995-05-15'),
+    (2, 'Luca', 'Verdi', '1998-08-22'),
+    (3, 'Anna', 'Bianchi', '1990-03-10');
+
+-- Inserimento dati nella tabella Insegnanti
+INSERT INTO Insegnanti (ID_Insegnante, Nome, Cognome)
+VALUES
+    (1, 'Laura', 'Neri'),
+    (2, 'Paolo', 'Gialli'),
+    (3, 'Giulia', 'Marroni');
+
+-- Inserimento dati nella tabella Corsi
+INSERT INTO Corsi (ID_Corso, NomeCorso, ID_Studente, ID_Insegnante)
+VALUES
+    (101, 'Matematica Avanzata', 1, 1),
+    (102, 'Storia dell'Arte', 2, 2),
+    (103, 'Programmazione', 3, 3);
