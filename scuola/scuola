@@ -1,0 +1,30 @@
+DROP DATABASE scuola IF EXISTS
+CREATE DATABASE scuola IF NOT EXISTS
+
+-- Creazione della tabella Studenti
+DROP TABLE Studenti IF EXISTS
+CREATE TABLE Studenti (
+    ID_Studente INT PRIMARY KEY,
+    Nome VARCHAR(50),
+    Cognome VARCHAR(50),
+    DataNascita DATE
+);
+
+-- Creazione della tabella Insegnanti
+DROP TABLE Insegnanti IF EXISTS
+CREATE TABLE Insegnanti (
+    ID_Insegnante INT PRIMARY KEY,
+    Nome VARCHAR(50),
+    Cognome VARCHAR(50),
+);
+
+-- Creazione della tabella Corsi
+DROP TABLE Corsi IF EXISTS
+CREATE TABLE Corsi (
+    ID_Corso INT PRIMARY KEY,
+    NomeCorso VARCHAR(50),
+	ID_Studente INT,
+    ID_Insegnante INT,
+	FOREIGN KEY (ID_Studente) REFERENCES Studenti(ID_Studente),
+    FOREIGN KEY (ID_Insegnante) REFERENCES Insegnanti(ID_Insegnante)
+);
