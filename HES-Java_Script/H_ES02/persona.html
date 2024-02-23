@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>persona</title>
+</head>
+<body>
+	<H1>Premi Ctrl + Shift + j (Windows/Linux)</H1>
+    <script>
+        //Creo un oggetto
+        let persona = {
+            nome:"",
+            cognome:"",
+            eta:0
+        }
+
+        //Itero i valori dell'oggetto con il ciclo for..in
+
+        for(let key in persona)
+        {
+            persona[key]=prompt("inserisci " + key + ":");
+        }
+		for (let chiave in persona) {
+            console.log(chiave + ": " + persona[chiave]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>operazioni</title>
+</head>
+<body>
+	<H1>Premi Ctrl + Shift + j (Windows/Linux)</H1>
+    <script>
+        let x=0;
+        let numero1;
+        let numero2;
+        const operazioni= {
+            somma:(a, b) => {
+                return `${a} + ${b} = ${a+b}`;
+            },
+            sottrazione:(a, b) => {
+                return `${a} - ${b} = ${a-b}`
+            },
+            moltiplicazione:(a, b) => {
+                return `${a} * ${b} = ${a*b}`
+            },
+            divisione:(a, b) => {
+                if(b!=0) return `${a} / ${b} = ${a/b}`;
+                return `non si può dividere per Zero!!!`;
+            },
+            potenza:(a, b) => {
+                return `${a} ** ${b} = ${a**b}`;
+            }
+        }
+
+        do //acquisisco i due numeri
+        {
+            numero1 = parseInt(prompt("inseri un numero1"));
+            numero2 = parseInt(prompt("inseri un numero2"));
+            if(Number.isNaN(numero1)||Number.isNaN(numero2))
+                console.log("uno dei valori inseriti non è un numero!");
+            else
+                x=1;
+        } while(x==0)
+
+        do 
+        {
+            x = prompt("inseri tra +, -, *, /, ** questi operazioni");
+            switch(x)
+            {
+                case "+":
+                    console.log("addizione");
+                    console.log(operazioni.somma(numero1,numero2));
+                break;
+                case "-":
+                    console.log("sottrazione");
+                    console.log(operazioni.sottrazione(numero1,numero2));
+                break;
+                case "*":
+                    console.log("moltiplicazione");
+                    console.log(operazioni.moltiplicazione(numero1,numero2));
+                break;
+                case "/":
+                    console.log("divizione");
+                    console.log(operazioni.divisione(numero1,numero2));
+                break;
+                case "**":
+                    console.log("potenza");
+                    console.log(operazioni.potenza(numero1,numero2));
+                break;
+                default:
+                    console.log("valore non è correto!");
+                    x=0;
+                break;
+            }
+        }while(x==0);
+    </script>
+</body>
+</html>

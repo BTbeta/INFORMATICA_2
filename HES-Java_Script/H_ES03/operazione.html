@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>operazioni</title>
+</head>
+<body>
+	<H1>Premi Ctrl + Shift + j (Windows/Linux)</H1>
+    <script>
+        let x=0;
+        let numero1;
+        let numero2;
+        let operazioni;
+        do //acquisisco i due numeri
+        {
+            numero1 = parseInt(prompt("inseri un numero1"));
+            numero2 = parseInt(prompt("inseri un numero2"));
+            if(Number.isNaN(numero1)||Number.isNaN(numero2))
+                console.log("uno dei valori inseriti non è un numero!");
+            else
+                x=1;
+        } while(x==0)
+
+        do 
+        {
+            operazioni = prompt("inseri tra +, -, *, /, ** questi operazioni");
+            switch(operazioni)
+            {
+                case "+":
+                    console.log("addizione");
+                    console.log(numero1 + "+" + numero2 +"=" + (numero1+numero2));
+                break;
+                case "-":
+                    console.log("sottrazione");
+                    console.log(numero1 + "-" + numero2 +"=" + (numero1-numero2));
+                break;
+                case "*":
+                    console.log("moltiplicazione");
+                    console.log(numero1 + "*" + numero2 +"=" + (numero1*numero2));
+                break;
+                case "/":
+                    console.log("divizione");
+                    console.log(numero1 + "/" + numero2 +"=" + (numero1/numero2));
+                break;
+                case "**":
+                    console.log("potenza");
+                    console.log(numero1 + "**" + numero2 +"=" + (numero1**numero2));
+                break;
+                default:
+                    console.log("valore non è correto!");
+                    operazioni=0;
+                break;
+            }
+        }while(operazioni==0);
+    </script>
+</body>
+</html>

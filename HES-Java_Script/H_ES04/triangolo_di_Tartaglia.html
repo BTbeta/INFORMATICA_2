@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>il triangolo di Tartaglia</title>
+</head>
+<body>
+	<H1>Premi Ctrl + Shift + j (Windows/Linux)</H1>
+    <script>
+        let x;
+        do
+        {
+            x=parseInt(prompt("inserisci un numero intero"));
+            if(Number.isNaN(x))
+                console.log("il valore inserito non è un numero!");
+        } while(Number.isNaN(x))
+        const triangolo = function(T)
+        {
+            if (T==0)
+            {
+                console.log("non c'è niente!!");
+                return;
+            }
+            let y = [1];
+            let i = T;
+            for(let x = 0; x < T; x++)
+            {
+                let z,a = 0,b = 0,c = "";
+                for(z = 0; z < x; z++)
+                {
+                    a = b;
+                    b = y[z];
+                    y[z] = a*1+b*1;
+                }
+                y[z] = 1;
+                for(j = 0; j < i; j++)
+                {
+                    c+=" ";
+                }
+                i--;
+                console.log(c + y);
+            }
+        }
+        triangolo(x);
+    </script>
+</body>
+</html>
