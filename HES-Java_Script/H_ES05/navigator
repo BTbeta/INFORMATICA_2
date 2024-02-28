@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>navigator</title>
+</head>
+<body>
+    <H1>Premi Ctrl + Shift + j (Windows/Linux)</H1>
+    <script>
+        console.log();
+    </script>
+</body>
+</html>
