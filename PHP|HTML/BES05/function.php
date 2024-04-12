@@ -1,38 +1,28 @@
 <?php
 
-function _pdodb_connection() {
-  try {
+function db_connection() {
     $hostname = "localhost";
-    $dbname = "secure_login";
-    $user = "sec_user";
-    $pass = "FFcGZr59zAa2BEWU";
-    $pdodb = new PDO ("mysql:host=$hostname;dbname=$dbname", $user, $pass);
-    return array(true, $pdodb);
-  } catch (PDOException $e) {
-    return array(false, "Errore: " . $e->getMessage());
-  }
+    $dbname = "es05";
+    $user = "ES05_user";
+    $pass = "*40F87C79E26ABDA1D423339533256337181A4F64";
+    $conn = mysqli_connect($hostname, $user, $pass, $dbname);
+    if (!$conn) {
+        die("Connessione al database fallita: " . mysqli_connect_error());
+    }
 }
-function login($email, $password) {
+function login($Username, $Password) {
   
-    if(! isset($email, $password)) 
+    if(! isset($Username, $password)) 
       return array(false, "Inserire le proprie credenziali e premere il pulsante login.");
       
-    if(empty($email) || empty($password)) 
+    if(empty($Username) || empty($password)) 
       return array(false, "Inserire le proprie credenziali e premere il pulsante login.");
-    
-    list($retval,$pdodb)=_pdodb_connection();
-    if(!$retval) {return array(false, $pdodb);} //TODO: debug only
   
     try {
-      $sql = "SELECT id, username, password, salt FROM members WHERE email=:email LIMIT 1";
-      $stmt = $pdodb->prepare($sql);
-      $retval = $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-      $retval = $stmt->execute();
-      $rowCount = $stmt->rowCount();
+      $sql = "SELECT Username, Password FROM es05 WHERE Username=:email LIMIT 1";
   
       if($rowCount == 1) {
         //l'utente esiste
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $db_userid = $row['id'];
         $db_username = $row['username'];
         $db_password = $row['password'];
