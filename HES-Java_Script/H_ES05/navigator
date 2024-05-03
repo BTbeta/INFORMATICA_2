@@ -6,7 +6,7 @@
 <body>
     <H1>Premi Ctrl + Shift + j (Windows/Linux)</H1>
     <script>
-        console.log();
+        console.log(navigator);
     </script>
 </body>
 </html>
