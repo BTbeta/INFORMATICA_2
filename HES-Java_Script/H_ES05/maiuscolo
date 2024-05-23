@@ -1,0 +1,17 @@
+<script>
+function converti() {
+    document.IDform.inputText.value = document.IDform.inputText.value.toUpperCase();
+}
+</script>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>maiuscolo</title>
+</head>
+<body>
+    <h1>colora
+    <form name="IDform" onKeyUp="converti()">
+        <input type="text" name="inputText">
+    </form>
+</body>
+</html>
