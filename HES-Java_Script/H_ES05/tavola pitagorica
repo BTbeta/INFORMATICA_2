@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>tabella pitagorica</title>
+</head>
+<body>
+    <script>
+        function tavola(){
+
+        }
+        var div = document.createElement('div');
+        document.getElementById('container').appendChild(div);
+    </script>
+</body>
+</html>
