@@ -1,38 +1,19 @@
 <?php
 session_start();
+
+require 'functions.php';
 // Costanti per la connessione al database
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'ES05_user');
-define('DB_PASSWORD', 'mia_password');
-define('DB_NAME', 'es05');
-
-// Connessione al database
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-// Verifica della connessione
-if (!$conn) {die("Connessione fallita: " . mysqli_connect_error());}
-
+db_connection()
 //echo "Connessione al database riuscita";
 // Recupera le credenziali dalla richiesta POST
 $errmsg = $_GET['errmsg'] ?? "";
 $username = $_POST['Username'] ?? "";
 $password = $_POST['password'] ?? "";
 
-// Esegui la query per verificare le credenziali dell'utente
-$query = "SELECT * FROM utente WHERE Username = '$username' AND Password = '$password'";
-echo $query . "<br>";
-$result = mysqli_query($conn, $query);
-
 // Verifica se la query ha restituito risultati
 if(isset($_POST["submit"])) 
 {
-  if (mysqli_num_rows($result) == 1) {
-      $errmsg ="Login riuscito. Benvenuto!"; // L'utente è autenticato con successo
-      $_SESSION['Username']=$username;
-      $_SESSION['Password']=$password;
-      header("Location: AreaR.php");
-  } else {
-      $errmsg ="Credenziali non valide. Riprova."; // L'utente non è autenticato
-  }
+  $errmsg=login($Username, $Password)
 }
 // Chiudere la connessione quando non è più necessaria
 mysqli_close($conn);
@@ -53,3 +34,4 @@ mysqli_close($conn);
   <p>Non hai un account? <a href="register.php">Registrati adesso</a>.</p>        
 </body>
 </html>
+
